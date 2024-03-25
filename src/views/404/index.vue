@@ -1,0 +1,29 @@
+<script setup></script>
+
+<template>
+  <div>404</div>
+  <p>对不起，页面未找到。</p>
+</template>
+
+<style scoped>
+div {
+  font-size: 200px;
+  text-align: center;
+}
+p {
+  font-size: 100px;
+  text-align: center;
+}
+html {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+</style>
