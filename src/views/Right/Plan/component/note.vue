@@ -62,6 +62,11 @@ const updata_idDone = (index, isDone) => {
   noteData.value[index].isDone = isDone
   sort()
 }
+//已完成的绑定部分
+const updata_Done = (plan, isDone) => {
+  const planInfo = noteData.value.find((item) => item.plan === plan)
+  planInfo.isDone = isDone
+}
 
 // ----添加按钮部分
 //添加计划
@@ -142,11 +147,11 @@ const showDone = () => {
       </ul>
       <ul v-if="show === 'done'">
         <template v-if="doneData.length !== 0">
-          <li class="note" v-for="(item, index) in doneData" :key="item.plan">
+          <li class="note" v-for="item in doneData" :key="item.plan">
             <radio
               class="radio"
               :isDone="item.isDone"
-              @update_isDone="(isDone) => updata_idDone(index, isDone)"
+              @update_isDone="(isDone) => updata_Done(item.plan, isDone)"
             ></radio>
             <span :class="{ del: item.isDone }">{{ item.plan }}</span>
           </li>

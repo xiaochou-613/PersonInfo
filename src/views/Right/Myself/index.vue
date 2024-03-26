@@ -1,6 +1,7 @@
 <script setup>
 import { getSpeakeveryday2 } from '@/apis/index'
 import { ref, watch } from 'vue'
+import { ElNotification } from 'element-plus'
 
 //文心一言
 const text = ref('正在加载中.. .. ..')
@@ -12,6 +13,10 @@ getText()
 
 //联系方式卡片
 const showInfo = ref(false)
+const show = () => {
+  showInfo.value = !showInfo.value
+  open()
+}
 
 //实现拖拽info卡片
 const infoDiv = ref(null)
@@ -35,6 +40,14 @@ watch(infoDiv, () => {
     })
   }
 })
+
+//提示双击关闭
+const open = () => {
+  ElNotification({
+    title: '提示',
+    message: '双击可关闭'
+  })
+}
 </script>
 
 <template>
@@ -53,12 +66,12 @@ watch(infoDiv, () => {
 
         <div class="contact">
           <h3>联系我</h3>
-          <div class="icon" @click="showInfo = true">
+          <div class="icon" @click="show">
             <span class="newicon iconfont icon-QQ"></span>
             <span class="newicon iconfont icon-weixin"></span>
             <span class="newicon iconfont icon-14"></span>
           </div>
-          <div class="icon" @click="showInfo = true">
+          <div class="icon" @click="show">
             <span class="newicon iconfont icon-GitHub"></span>
             <span class="newicon iconfont icon-bilibili"></span>
             <span class="newicon iconfont icon-douyin"></span>

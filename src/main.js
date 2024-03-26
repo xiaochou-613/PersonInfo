@@ -6,6 +6,7 @@ import '@/css/iconfont.css'
 import '@/css/common.css'
 import 'animate.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
+import 'element-plus/dist/index.css'
 
 const app = createApp(App)
 

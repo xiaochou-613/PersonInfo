@@ -21,6 +21,11 @@ const props = defineProps({
   }
 })
 
+//跳转网页
+const gotoWeb = () => {
+  window.open(props.webInfo.url)
+}
+
 const hoverIn = () => {
   box.value.style.backgroundColor = props.color.backColor
   box.value.querySelectorAll('.re-color')[0].style.color = props.color.textColor
@@ -41,7 +46,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="box" @mouseover="hoverIn" @mouseout="hoverOut" ref="box">
+  <div
+    class="box"
+    @mouseover="hoverIn"
+    @mouseout="hoverOut"
+    @click="gotoWeb"
+    ref="box"
+  >
     <img :src="webInfo.image" alt="" />
     <div class="navtext">
       <h3 class="re-color">{{ webInfo.title }}</h3>

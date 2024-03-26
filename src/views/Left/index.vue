@@ -24,16 +24,18 @@ const activing = (index) => {
 //头像以及昵称的资源
 const name = ref()
 const image = ref()
-image.value = localStorage.getItem('uploadedImage') || 'src/image/QQ.jpg'
-name.value = localStorage.getItem('PerosnInfo_name') || '小江子'
+image.value = localStorage.getItem('uploadedImage')
+name.value = localStorage.getItem('PerosnInfo_name')
 </script>
 
 <template>
   <div class="left-list">
     <div class="option">
       <div class="person">
-        <img :src="image" alt="头像" />
-        <span>{{ name }}</span>
+        <img v-if="image" :src="image" alt="头像" />
+        <img v-else src="@/image/QQ.jpg" alt="头像" />
+        <span v-if="name">{{ name }}</span>
+        <span v-else>小江子 </span>
       </div>
       <v-btn
         variant="plain"
