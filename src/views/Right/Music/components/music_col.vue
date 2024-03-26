@@ -11,7 +11,7 @@ defineProps({
   <!-- 控制台 -->
   <div class="control">
     <div class="col_left">
-      <span style="margin-right: 10px">暗号</span>
+      <span style="margin-right: 10px">姑凉别哭泣</span>
       <!-- <p>周杰伦</p> -->
       <v-icon color="red-lighten-1" icon="mdi-heart" size="large"></v-icon>
       <div class="startTime">

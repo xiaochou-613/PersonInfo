@@ -45,6 +45,7 @@ const audioStore = useAudioStore()
             v-for="(item, index) in musicData"
             :key="index"
             :class="{ newcolor: index % 2 === 0 }"
+            @click="audioStore.play()"
           >
             <td>
               <div class="musicName">

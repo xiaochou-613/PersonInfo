@@ -24,7 +24,6 @@ export const useAudioStore = defineStore('audio', () => {
   // 点击播放
   const play = () => {
     audio.value.play()
-    audio.value.currentTime = 20
   }
 
   // 点击暂停

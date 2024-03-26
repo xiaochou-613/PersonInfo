@@ -3,140 +3,152 @@ export const musicData = [
     name: '暗号',
     singer: '周杰伦',
     audio: 'src/music/暗号.mp3',
-    image: 'src/image/暗号.png',
+    image:
+      'https://y.qq.com/music/photo_new/T002R300x300M000004MGitN0zEHpb_2.jpg?max_age=2592000',
     time: 250 // 4:10, 250s
   },
   {
     name: '七里香',
     singer: '周杰伦',
     audio: 'src/music/七里香.mp3',
-    image: 'src/image/七里香.png',
+    image:
+      'https://y.qq.com/music/photo_new/T002R300x300M000003DFRzD192KKD_1.jpg?max_age=2592000',
     time: 243 // 4:03, 243s
   },
   {
     name: '晴天',
     singer: '周杰伦',
     audio: 'src/music/晴天.mp3',
-    image: 'src/image/晴天.png',
+    image:
+      'https://y.qq.com/music/photo_new/T002R300x300M000000MkMni19ClKG_4.jpg?max_age=2592000',
     time: 273 // 4:33, 273s
   },
   {
     name: '告白气球',
     singer: '周杰伦',
     audio: 'src/music/告白气球.mp3',
-    image: 'src/image/告白气球.png',
+    image:
+      'https://y.qq.com/music/photo_new/T002R300x300M000003RMaRI1iFoYd_1.jpg?max_age=2592000',
     time: 253 // 4:13, 253s
   },
   {
     name: '夜曲',
     singer: '周杰伦',
     audio: 'src/music/夜曲.mp3',
-    image: 'src/image/夜曲.png',
+    image:
+      'https://y.qq.com/music/photo_new/T002R300x300M0000024bjiL2aocxT_3.jpg?max_age=2592000',
     time: 248 // 4:08, 248s
   },
   {
     name: '青花瓷',
     singer: '周杰伦',
     audio: 'src/music/青花瓷.mp3',
-    image: 'src/image/青花瓷.png',
+    image:
+      'https://y.qq.com/music/photo_new/T002R300x300M000002eFUFm2XYZ7z_2.jpg?max_age=2592000',
     time: 254 // 4:14, 254s
   },
   {
     name: '东风破',
     singer: '周杰伦',
     audio: 'src/music/东风破.mp3',
-    image: 'src/image/东风破.png',
+    image:
+      'https://y.qq.com/music/photo_new/T002R300x300M000000MkMni19ClKG_4.jpg?max_age=2592000',
     time: 252 // 4:12, 252s
   },
   {
     name: '明明就',
     singer: '周杰伦',
     audio: 'src/music/明明就.mp3',
-    image: 'src/image/明明就.png',
+    image:
+      'https://y.qq.com/music/photo_new/T002R300x300M000003Ow85E3pnoqi_1.jpg?max_age=2592000',
     time: 276 // 4:36, 276s
   },
   {
     name: '以父之名',
     singer: '周杰伦',
     audio: 'src/music/以父之名.mp3',
-    image: 'src/image/以父之名.png',
+    image:
+      'https://y.qq.com/music/photo_new/T002R300x300M000000MkMni19ClKG_4.jpg?max_age=2592000',
     time: 310 // 5:10, 310s
   },
   {
     name: '千里之外',
     singer: '周杰伦',
     audio: 'src/music/千里之外.mp3',
-    image: 'src/image/千里之外.png',
+    image:
+      'https://y.qq.com/music/photo_new/T002R300x300M000002jLGWe16Tf1H_1.jpg?max_age=2592000',
     time: 284 // 4:44, 284s
   },
   {
     name: '稻香',
     singer: '周杰伦',
     audio: 'src/music/稻香.mp3',
-    image: 'src/image/稻香.png',
+    image:
+      'https://y.qq.com/music/photo_new/T002R300x300M000002Neh8l0uciQZ_1.jpg?max_age=2592000',
     time: 268 // 4:28, 268s
   },
   {
     name: '爱在西元前',
     singer: '周杰伦',
     audio: 'src/music/爱在西元前.mp3',
-    image: 'src/image/爱在西元前.png',
+    image:
+      '	https://y.qq.com/music/photo_new/T002R300x300M000000I5jJB3blWeN_2.jpg?max_age=2592000',
     time: 305 // 5:05, 305s
   },
   {
     name: '花海',
     singer: '周杰伦',
     audio: 'src/music/花海.mp3',
-    image: 'src/image/花海.png',
+    image:
+      'https://y.qq.com/music/photo_new/T002R300x300M000002Neh8l0uciQZ_1.jpg?max_age=2592000',
     time: 258 // 4:18, 258s
   },
   {
     name: '开不了口',
     singer: '周杰伦',
     audio: 'src/music/开不了口.mp3',
-    image: 'src/image/开不了口.png',
+    image:
+      '	https://y.qq.com/music/photo_new/T002R300x300M000000I5jJB3blWeN_2.jpg?max_age=2592000',
     time: 280 // 4:40, 280s
   },
   {
     name: '反方向的钟',
     singer: '周杰伦',
     audio: 'src/music/反方向的钟.mp3',
-    image: 'src/image/反方向的钟.png',
+    image:
+      'https://y.qq.com/music/photo_new/T002R300x300M000000f01724fd7TH_1.jpg?max_age=2592000',
     time: 262 // 4:22, 262s
-  },
-  {
-    name: '告白气球',
-    singer: '周杰伦',
-    audio: 'src/music/告白气球.mp3',
-    image: 'src/image/告白气球.png',
-    time: 281 // 4:41, 281s
   },
   {
     name: '兰亭序',
     singer: '周杰伦',
     audio: 'src/music/兰亭序.mp3',
-    image: 'src/image/兰亭序.png',
+    image:
+      'https://y.qq.com/music/photo_new/T002R300x300M000002Neh8l0uciQZ_1.jpg?max_age=2592000',
     time: 284 // 4:44, 284s
   },
   {
     name: '烟花易冷',
     singer: '周杰伦',
     audio: 'src/music/烟花易冷.mp3',
-    image: 'src/image/烟花易冷.png',
+    image:
+      '	https://y.qq.com/music/photo_new/T002R300x300M000000bviBl4FjTpO_1.jpg?max_age=2592000',
     time: 294 // 4:54, 294s
   },
   {
     name: '简单爱',
     singer: '周杰伦',
     audio: 'src/music/简单爱.mp3',
-    image: 'src/image/简单爱.png',
+    image:
+      'https://y.qq.com/music/photo_new/T002R300x300M000002eFUFm2XYZ7z_2.jpg?max_age=2592000',
     time: 282 // 4:42, 282s
   },
   {
     name: '枫',
     singer: '周杰伦',
     audio: 'src/music/枫.mp3',
-    image: 'src/image/枫.png',
+    image:
+      'https://y.qq.com/music/photo_new/T002R300x300M0000024bjiL2aocxT_3.jpg?max_age=2592000',
     time: 266 // 4:26, 266s
   }
   // Add more entries as needed
