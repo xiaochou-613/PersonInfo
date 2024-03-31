@@ -45,7 +45,7 @@ onMounted(() => {
   bottom: 0;
   right: 0;
   margin: auto;
-  width: 100%;
+  width: 2122px;
   height: 0px;
   transition: 0.6s ease-out;
   overflow: hidden;
