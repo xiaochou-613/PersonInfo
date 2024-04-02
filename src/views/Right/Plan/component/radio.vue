@@ -6,7 +6,9 @@ defineOptions({
   name: 'radioComponent'
 })
 const props = defineProps({
-  isDone: Boolean
+  isDone: {
+    required: true
+  }
 })
 
 const checked = ref(false)

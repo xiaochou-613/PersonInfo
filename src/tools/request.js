@@ -3,9 +3,13 @@ import axios from 'axios'
 
 // 创建一个新的axios实例
 const request = axios.create({
-  baseURL: 'https://api.qqsuu.cn/api/',
+  baseURL: 'http://127.0.0.1:8080/',
   timeout: 5000
 })
+
+/**
+ * 统一携带token或者出错提示   -- 待完成
+ */
 
 // 添加请求拦截器
 request.interceptors.request.use(

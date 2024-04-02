@@ -18,3 +18,7 @@ app.use(pinia)
 app.use(router)
 app.use(vuetify)
 app.mount('#app')
+
+// git add .
+// git commit -m "..."
+// git push -u origin master

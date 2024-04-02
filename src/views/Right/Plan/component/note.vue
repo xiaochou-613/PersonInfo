@@ -4,6 +4,7 @@ defineOptions({
 })
 import { ref } from 'vue'
 import radio from './radio.vue'
+import { getallPlan, addPlan } from '@/apis/plan'
 
 //显示哪部分
 const show = ref('await')
@@ -11,42 +12,16 @@ const showAwait = () => {
   show.value = 'await'
 }
 
+//获取所有计划
 const noteData = ref()
 const doneData = ref()
-noteData.value = [
-  {
-    isDone: false,
-    plan: '找女人',
-    doneTime: '2023-03-28 12:00:00'
-  },
-  {
-    isDone: true,
-    plan: '今天的任务当然是把今天混过去',
-    doneTime: '2023-03-28 12:00:00'
-  },
-  {
-    isDone: false,
-    plan: '学习Nodejs',
-    doneTime: '2023-03-28 12:00:00'
-  },
-  {
-    isDone: false,
-    plan: '想吃吃顿好的',
-    doneTime: '2023-03-28 12:00:00'
-  },
-  {
-    isDone: false,
-    plan: '赚钱买摩动核敖丙，一定要带灯,并且价格要便宜aaaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊',
-    doneTime: '2023-03-28 12:00:00'
-  }
-]
-doneData.value = [
-  // {
-  //   isDone: true,
-  //   plan: '今天的任务当然是把今天混过去',
-  //   doneTime: '2023-03-28 12:00:00'
-  // }
-]
+const getplan = async () => {
+  const res = await getallPlan()
+  noteData.value = res.data
+  console.log(noteData.value)
+  sort()
+}
+getplan()
 
 //将数组排序
 const sort = () => {
@@ -55,7 +30,6 @@ const sort = () => {
   const undoneItems = noteData.value.filter((item) => !item.isDone)
   noteData.value = [...undoneItems, ...doneItems]
 }
-sort()
 
 //双向绑定
 const updata_idDone = (index, isDone) => {
@@ -81,15 +55,12 @@ const startInp = () => {
   inp.value.focus()
 }
 //添加计划
-const addPlan = () => {
+const addnewPlan = async () => {
   if (inputContent.value) {
-    noteData.value.unshift({
-      isDone: false,
-      plan: inputContent.value,
-      doneTime: ''
-    })
+    await addPlan({ content: inputContent.value })
+
     inputContent.value = ''
-    sort()
+    getplan()
   }
   revert()
 }
@@ -102,7 +73,7 @@ const revert = () => {
 
 //  -----已完成部分
 const showDone = () => {
-  doneData.value = noteData.value.filter((item) => item.isDone)
+  doneData.value = noteData.value?.filter((item) => item.isDone)
   show.value = 'done'
 }
 
@@ -124,13 +95,13 @@ const showDone = () => {
     <main>
       <ul v-if="show === 'await'">
         <!-- 这个地方如果key是index，那么不会改变，那么数组就算变化了组件也不会重新渲染，如果key变了可以起到重新渲染的作用 -->
-        <li class="note" v-for="(item, index) in noteData" :key="item.plan">
+        <li class="note" v-for="(item, index) in noteData" :key="item.planId">
           <radio
             class="radio"
             :isDone="item.isDone"
             @update_isDone="(isDone) => updata_idDone(index, isDone)"
           ></radio>
-          <span :class="{ del: item.isDone }">{{ item.plan }}</span>
+          <span :class="{ del: item.isDone }">{{ item.content }}</span>
         </li>
         <li>
           <div class="add" @click="startInp" ref="add">+</div>
@@ -140,20 +111,20 @@ const showDone = () => {
             class="inp"
             placeholder="Enter your plan"
             v-model="inputContent"
-            @keydown.enter="addPlan"
+            @keydown.enter="addnewPlan"
             @blur="revert"
           />
         </li>
       </ul>
       <ul v-if="show === 'done'">
         <template v-if="doneData.length !== 0">
-          <li class="note" v-for="item in doneData" :key="item.plan">
+          <li class="note" v-for="item in doneData" :key="item.planId">
             <radio
               class="radio"
               :isDone="item.isDone"
               @update_isDone="(isDone) => updata_Done(item.plan, isDone)"
             ></radio>
-            <span :class="{ del: item.isDone }">{{ item.plan }}</span>
+            <span :class="{ del: item.isDone }">{{ item.content }}</span>
           </li>
         </template>
         <li class="Nodone" v-else>

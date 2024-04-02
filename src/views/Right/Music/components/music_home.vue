@@ -115,8 +115,10 @@ table {
   box-sizing: border-box;
 }
 tbody {
+  tr {
+    transition: all 0.2s ease-in-out;
+  }
   tr:hover {
-    transition: 0.3s;
     transform: scaleX(1.03);
   }
 }
