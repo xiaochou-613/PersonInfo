@@ -19,7 +19,7 @@ const emit = defineEmits(['update_isDone'])
 const done = () => {
   checked.value = !checked.value
 
-  emit('update_isDone', checked.value)
+  emit('update_isDone', checked.value ? 1 : 0)
 }
 
 watch(

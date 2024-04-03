@@ -4,7 +4,8 @@ defineOptions({
 })
 import { ref } from 'vue'
 import radio from './radio.vue'
-import { getallPlan, addPlan } from '@/apis/plan'
+import { usePlanStore } from '@/store/plan'
+const planStore = usePlanStore()
 
 //显示哪部分
 const show = ref('await')
@@ -13,33 +14,11 @@ const showAwait = () => {
 }
 
 //获取所有计划
-const noteData = ref()
-const doneData = ref()
-const getplan = async () => {
-  const res = await getallPlan()
-  noteData.value = res.data
-  console.log(noteData.value)
-  sort()
-}
-getplan()
-
-//将数组排序
-const sort = () => {
-  //将已经完成的放在后面，未完成的放在前面
-  const doneItems = noteData.value.filter((item) => item.isDone)
-  const undoneItems = noteData.value.filter((item) => !item.isDone)
-  noteData.value = [...undoneItems, ...doneItems]
-}
+planStore.get_Plan()
 
 //双向绑定
-const updata_idDone = (index, isDone) => {
-  noteData.value[index].isDone = isDone
-  sort()
-}
-//已完成的绑定部分
-const updata_Done = (plan, isDone) => {
-  const planInfo = noteData.value.find((item) => item.plan === plan)
-  planInfo.isDone = isDone
+const updata_idDone = (item, isDone) => {
+  planStore.update_Plan({ ...item, isDone })
 }
 
 // ----添加按钮部分
@@ -55,12 +34,10 @@ const startInp = () => {
   inp.value.focus()
 }
 //添加计划
-const addnewPlan = async () => {
+const addnewPlan = () => {
   if (inputContent.value) {
-    await addPlan({ content: inputContent.value })
-
+    planStore.add_Plan(inputContent.value)
     inputContent.value = ''
-    getplan()
   }
   revert()
 }
@@ -69,12 +46,6 @@ const revert = () => {
   add.value.style.width = '70px'
   add.value.innerText = '+'
   inp.value.style.display = 'none'
-}
-
-//  -----已完成部分
-const showDone = () => {
-  doneData.value = noteData.value?.filter((item) => item.isDone)
-  show.value = 'done'
 }
 
 //  -----添加功能***************************************************************
@@ -90,18 +61,25 @@ const showDone = () => {
   <div>
     <header>
       <h1 :class="{ active: show === 'await' }" @click="showAwait">待办</h1>
-      <h1 :class="{ active: show === 'done' }" @click="showDone">已完成</h1>
+      <h1 :class="{ active: show === 'done' }" @click="show = 'done'">
+        已完成
+      </h1>
     </header>
     <main>
       <ul v-if="show === 'await'">
         <!-- 这个地方如果key是index，那么不会改变，那么数组就算变化了组件也不会重新渲染，如果key变了可以起到重新渲染的作用 -->
-        <li class="note" v-for="(item, index) in noteData" :key="item.planId">
+        <li class="note" v-for="item in planStore.planData" :key="item.planId">
           <radio
             class="radio"
             :isDone="item.isDone"
-            @update_isDone="(isDone) => updata_idDone(index, isDone)"
+            @update_isDone="(isDone) => updata_idDone(item, isDone)"
           ></radio>
           <span :class="{ del: item.isDone }">{{ item.content }}</span>
+          <v-icon
+            @click="planStore.delete_Plan(item.planId)"
+            icon="mdi-trash-can"
+            class="icon"
+          ></v-icon>
         </li>
         <li>
           <div class="add" @click="startInp" ref="add">+</div>
@@ -117,12 +95,16 @@ const showDone = () => {
         </li>
       </ul>
       <ul v-if="show === 'done'">
-        <template v-if="doneData.length !== 0">
-          <li class="note" v-for="item in doneData" :key="item.planId">
+        <template v-if="planStore.doneData.length !== 0">
+          <li
+            class="note"
+            v-for="item in planStore.doneData"
+            :key="item.planId"
+          >
             <radio
               class="radio"
               :isDone="item.isDone"
-              @update_isDone="(isDone) => updata_Done(item.plan, isDone)"
+              @update_isDone="(isDone) => updata_idDone(item, isDone)"
             ></radio>
             <span :class="{ del: item.isDone }">{{ item.content }}</span>
           </li>
@@ -205,6 +187,20 @@ main {
     .del {
       text-decoration: line-through;
     }
+    .icon {
+      margin-left: auto;
+      margin-right: 20px;
+      color: #999;
+      font-size: 20px;
+      transition: 0.1s;
+      display: none;
+    }
+    .icon:hover {
+      color: rgb(219, 114, 114);
+    }
+  }
+  .note:hover .icon {
+    display: block;
   }
   li > .add {
     width: 70px;
