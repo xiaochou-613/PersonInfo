@@ -1,12 +1,9 @@
 <script setup>
-import { words } from '../data'
+// import { words } from '../data'
 import { ref, onMounted } from 'vue'
 import Music_col from './music_col.vue'
 import { useAudioStore } from '@/store/audio'
-
 const audioStore = useAudioStore()
-//时间与歌词信息
-audioStore.transWords(words)
 
 //拿到容器高度
 const contRef = ref(null)

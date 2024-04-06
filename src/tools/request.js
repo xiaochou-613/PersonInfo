@@ -1,5 +1,6 @@
 /* 封装axios用于发送请求 */
 import axios from 'axios'
+import { ElNotification } from 'element-plus'
 
 // 创建一个新的axios实例
 const request = axios.create({
@@ -27,6 +28,15 @@ request.interceptors.request.use(
 request.interceptors.response.use(
   function (response) {
     // 对响应数据做点什么
+    const res = response.data
+    if (res.status !== 200) {
+      ElNotification({
+        title: '提示',
+        message: res.msg
+      })
+      return Promise.reject(res.message)
+    }
+
     return response.data
   },
   function (error) {

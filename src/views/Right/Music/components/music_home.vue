@@ -1,11 +1,13 @@
 <script setup>
 import Music_col from './music_col.vue'
-import { musicData } from '../data'
 import { useAudioStore } from '@/store/audio.js'
 
 const audioStore = useAudioStore()
 
-//使用onMounted会找不到audio
+//使用onMounted会找不到audio,可能是父子不能使用两个onmounted吧。
+
+//获取音乐信息
+audioStore.getMusic()
 </script>
 
 <template>
@@ -20,7 +22,7 @@ const audioStore = useAudioStore()
           rounded="xl"
           style="margin-right: 20px"
           prepend-icon="mdi-play"
-          @click="audioStore.play"
+          @click="audioStore.play(1)"
           >播放</v-btn
         >
         <v-btn rounded="xl" style="margin-right: 20px" prepend-icon="mdi-heart"
@@ -42,10 +44,10 @@ const audioStore = useAudioStore()
         </thead>
         <tbody>
           <tr
-            v-for="(item, index) in musicData"
+            v-for="(item, index) in audioStore.musicInfo"
             :key="index"
             :class="{ newcolor: index % 2 === 0 }"
-            @click="audioStore.play()"
+            @click="audioStore.play(index + 1)"
           >
             <td>
               <div class="musicName">

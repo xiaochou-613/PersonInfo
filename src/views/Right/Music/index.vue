@@ -11,13 +11,19 @@ onMounted(() => {
 
 const canplay = () => {
   audioStore.totalTime = audioStore.formatTime(audioRef.value.duration)
+  audioRef.value.play()
 }
 </script>
 
 <template>
   <!-- 放在这里解决路由跳转刷新的问题 -->
-  <audio ref="audioRef" @canplay="canplay" @timeupdate="audioStore.timeChange">
-    <source src="@/music/姑凉别哭泣.mp3" />
+  <audio
+    ref="audioRef"
+    @canplay="canplay"
+    @timeupdate="audioStore.timeChange"
+    :src="audioStore.audioPath"
+  >
+    <!-- <source :src="audioStore.audioPath" /> -->
   </audio>
 
   <router-view v-slot="{ Component }">

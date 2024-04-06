@@ -16,10 +16,11 @@ const showAwait = () => {
 //获取所有计划
 planStore.get_Plan()
 
-//双向绑定
-const updata_idDone = (item, isDone) => {
-  planStore.update_Plan({ ...item, isDone })
+//双向绑定(更新计划)
+const updata_isDone = (planId, isDone) => {
+  planStore.update_Plan({ planId, isDone })
 }
+//置顶计划(更新等级)
 
 // ----添加按钮部分
 //添加计划
@@ -49,11 +50,10 @@ const revert = () => {
 }
 
 //  -----添加功能***************************************************************
-// 待办事项上面点击可以修改
-// 已完成的或者没完成的hover过去有一个删除的按钮
-// 第二天今天完成的统一移到已完成
-// 添加置顶，置顶的颜色变色红色
-// 已完成的按时间排序
+// 待办事项上面点击可以修改  -- 费
+
+// 追求完美的话还可以将时间改为今天昨天
+// 考虑已完成的可以删除
 // ...
 </script>
 
@@ -68,18 +68,41 @@ const revert = () => {
     <main>
       <ul v-if="show === 'await'">
         <!-- 这个地方如果key是index，那么不会改变，那么数组就算变化了组件也不会重新渲染，如果key变了可以起到重新渲染的作用 -->
-        <li class="note" v-for="item in planStore.planData" :key="item.planId">
+        <li class="note" v-for="item in planStore.readyData" :key="item.planId">
           <radio
             class="radio"
             :isDone="item.isDone"
-            @update_isDone="(isDone) => updata_idDone(item, isDone)"
+            @update_isDone="(isDone) => updata_isDone(item.planId, isDone)"
           ></radio>
-          <span :class="{ del: item.isDone }">{{ item.content }}</span>
-          <v-icon
-            @click="planStore.delete_Plan(item.planId)"
-            icon="mdi-trash-can"
-            class="icon"
-          ></v-icon>
+          <span
+            :class="{
+              del: item.isDone,
+              highlevel: item.level === '最高' && !item.isDone
+            }"
+            >{{ item.content }}</span
+          >
+
+          <!-- 功能选择 -->
+          <div class="icon">
+            <v-icon
+              v-if="!item.isDone"
+              icon="mdi-arrow-up-circle"
+              class="top"
+              :title="item.level !== '最高' ? '置顶' : '取消置顶'"
+              @click="
+                planStore.stick_Plan({
+                  planId: item.planId,
+                  level: item.level === '最高' ? '中' : '最高'
+                })
+              "
+            ></v-icon>
+            <v-icon
+              @click="planStore.delete_Plan(item.planId, item.level)"
+              icon="mdi-delete-circle"
+              class="delicon"
+              title="删除"
+            ></v-icon>
+          </div>
         </li>
         <li>
           <div class="add" @click="startInp" ref="add">+</div>
@@ -94,30 +117,38 @@ const revert = () => {
           />
         </li>
       </ul>
-      <ul v-if="show === 'done'">
-        <template v-if="planStore.doneData.length !== 0">
-          <li
-            class="note"
-            v-for="item in planStore.doneData"
-            :key="item.planId"
-          >
-            <radio
-              class="radio"
-              :isDone="item.isDone"
-              @update_isDone="(isDone) => updata_idDone(item, isDone)"
-            ></radio>
-            <span :class="{ del: item.isDone }">{{ item.content }}</span>
+      <div v-if="show === 'done'">
+        <ul v-for="(i, index) in planStore.finishData" :key="index">
+          <h4 class="finishtime">{{ i.time }}</h4>
+          <template v-if="i.data.length !== 0">
+            <li
+              class="note"
+              v-for="item in i.data"
+              :key="item.planId"
+              style="margin-bottom: 0px"
+            >
+              <radio
+                class="radio"
+                :isDone="item.isDone"
+                @update_isDone="(isDone) => updata_isDone(item.planId, isDone)"
+              ></radio>
+              <span :class="{ del: item.isDone }">{{ item.content }}</span>
+            </li>
+          </template>
+          <li class="Nodone" v-else>
+            <div class="noDatac">暂无数据，向着目目标前进吧</div>
           </li>
-        </template>
-        <li class="Nodone" v-else>
-          <div class="noDatac">暂无数据，向着目目标前进吧</div>
-        </li>
-      </ul>
+        </ul>
+      </div>
     </main>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.finishtime {
+  margin: 10px;
+  color: #444;
+}
 header {
   margin-top: 10px;
   h1 {
@@ -186,17 +217,28 @@ main {
     }
     .del {
       text-decoration: line-through;
+      color: #999;
+    }
+    .highlevel {
+      color: rgb(173, 47, 47);
     }
     .icon {
       margin-left: auto;
       margin-right: 20px;
-      color: #999;
-      font-size: 20px;
-      transition: 0.1s;
       display: none;
-    }
-    .icon:hover {
-      color: rgb(219, 114, 114);
+      .delicon,
+      .top {
+        color: #999;
+        font-size: 22px;
+        transition: 0.1s;
+        margin-right: auto;
+      }
+      .delicon:hover {
+        color: rgb(219, 114, 114);
+      }
+      .top:hover {
+        color: rgb(191, 241, 73);
+      }
     }
   }
   .note:hover .icon {

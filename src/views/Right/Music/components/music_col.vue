@@ -11,7 +11,9 @@ defineProps({
   <!-- 控制台 -->
   <div class="control">
     <div class="col_left">
-      <span style="margin-right: 10px">姑凉别哭泣</span>
+      <span style="margin-right: 10px" v-if="audioStore.lyricName()">{{
+        audioStore.lyricName().replace(' - 周杰伦', '')
+      }}</span>
       <!-- <p>周杰伦</p> -->
       <v-icon color="red-lighten-1" icon="mdi-heart" size="large"></v-icon>
       <div class="startTime">
@@ -51,6 +53,7 @@ defineProps({
         {{ audioStore.totalTime === 0 ? '0:00' : audioStore.totalTime }}
       </div>
       <span
+        v-if="audioStore.lyric.length"
         class="iconfont icon-geci lyric"
         @click="$router.push(address)"
       ></span>

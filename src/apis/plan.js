@@ -12,15 +12,15 @@ export const addPlan = (data) => {
   return res
 }
 
-/**
- * 更新计划
- * @params content
- * @params level
- * @params isDone
- * @params planId
- */
+//更新是否完成  - isDone，palnId
 export const updatePlan = (data) => {
   const res = request.post('api/updatePlan', data)
+  return res
+}
+
+//更新计划等级  - level，planId
+export const updatePlanlevel = (data) => {
+  const res = request.post('api/updatePlanLevel', data)
   return res
 }
 
