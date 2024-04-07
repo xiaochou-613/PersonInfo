@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useUserStore } from '@/store/user'
 
 const file = ref(null)
 onMounted(() => {
@@ -22,9 +23,9 @@ onMounted(() => {
   }
 })
 
-//将上传的文件保存在本地
-const uploadFile = ref(null)
-
+// 处理上传逻辑
+const uploadFile = ref()
+const userStore = useUserStore()
 const upload = () => {
   if (uploadFile.value.files) {
     const reader = new FileReader()
@@ -32,8 +33,9 @@ const upload = () => {
       // 将文件数据保存在变量中
       let imageData = event.target.result
       if (imageData) {
-        // 将图片数据保存到 localStorage
-        localStorage.setItem('uploadedImage', imageData)
+        // 修改图片
+        userStore.updateUserInfo({ image: imageData })
+        console.log(imageData)
       }
     }
     reader.readAsDataURL(uploadFile.value.files[0])
@@ -49,6 +51,7 @@ const upload = () => {
       class="drop-here"
       ref="uploadFile"
       @change="upload"
+      accept=".jpg, .jpeg, .png"
     />
     <div class="text text-drop">+</div>
     <div class="text text-upload">...</div>
@@ -60,8 +63,6 @@ const upload = () => {
     </svg>
     <div class="shadow"></div>
   </div>
-
-  <!--- ## DRIBBBLE + TWITTER ############# -->
 </template>
 
 <style lang="scss" scoped>

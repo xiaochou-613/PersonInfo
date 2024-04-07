@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/store/user'
 const router = useRouter()
 
 const content = ref()
@@ -21,12 +22,13 @@ const activing = (index) => {
   router.push(content.value[index]?.address)
 }
 
-//头像以及昵称的资源
-const name = ref()
 const image = ref()
-localStorage.setItem('PerosnInfo_name', '小江子')
-image.value = localStorage.getItem('uploadedImage')
-name.value = localStorage.getItem('PerosnInfo_name')
+const userStore = useUserStore()
+const getuser = async () => {
+  await userStore.getUserInfo()
+  image.value = userStore.user[0].image
+}
+getuser()
 </script>
 
 <template>
@@ -34,8 +36,7 @@ name.value = localStorage.getItem('PerosnInfo_name')
     <div class="option">
       <div class="person">
         <img v-if="image" :src="image" alt="头像" />
-        <img v-else src="@/image/QQ.jpg" alt="头像" />
-        <span>{{ name }}</span>
+        <span>{{ userStore.user[0]?.name || '小江子' }}</span>
       </div>
       <v-btn
         variant="plain"

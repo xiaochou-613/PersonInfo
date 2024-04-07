@@ -4,7 +4,6 @@ import { ref, onMounted } from 'vue'
 import anime from 'animejs'
 
 const content = ref(null)
-
 onMounted(() => {
   const time = setTimeout(() => {
     anime({

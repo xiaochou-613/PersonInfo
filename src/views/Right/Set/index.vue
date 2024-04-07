@@ -93,8 +93,8 @@ const uploadName = () => {
       font-size: 16px;
       width: 100px;
       height: 46px;
-      border: 1px dashed #000;
-      border-radius: 15px;
+      border: 2px dashed rgb(252, 213, 228);
+      border-radius: 22px;
     }
   }
 }

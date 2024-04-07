@@ -2,7 +2,7 @@
 
 <template>
   <div>404</div>
-  <p>对不起，页面未找到。</p>
+  <p>你怎么跑丢了？</p>
 </template>
 
 <style scoped>

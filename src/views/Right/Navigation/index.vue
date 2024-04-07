@@ -4,7 +4,7 @@ import { navData } from './index'
 </script>
 
 <template>
-  <img src="@/image/剑仙问情.png" alt="" class="head_image" draggable="false" />
+  <img src="@/image/剑仙问情.png" class="head_image" draggable="false" />
   <div class="nav_cycontent" v-for="(item, index) in navData" :key="index">
     <h3>---&nbsp;&nbsp;{{ item.title }}&nbsp;&nbsp; ---</h3>
     <navCard
@@ -13,7 +13,7 @@ import { navData } from './index'
       :key="indexNum"
       :webInfo="i"
       :color="item.color"
-      :tag="item.tag"
+      :tag="i.tag"
     ></navCard>
   </div>
 </template>
