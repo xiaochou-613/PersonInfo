@@ -1,10 +1,13 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { useAudioStore } from '@/store/audio.js'
+import anhao from '@/music/暗号.mp3'
+import qilixiang from '@/music/七里香.mp3'
 
 const audioRef = ref(null)
 const audioStore = useAudioStore()
 
+const music = ref()
 onMounted(() => {
   audioStore.audio = audioRef.value
 })
@@ -13,6 +16,13 @@ const canplay = () => {
   audioStore.totalTime = audioStore.formatTime(audioRef.value.duration)
   audioRef.value.play()
 }
+
+watch(()=>audioStore.audioPath,()=>{
+  if(audioStore.audioPath === '暗号.mp3')
+      music.value = anhao 
+  else if(audioStore.audioPath === '七里香.mp3')
+      music.value = qilixiang
+})
 </script>
 
 <template>
@@ -21,7 +31,7 @@ const canplay = () => {
     ref="audioRef"
     @canplay="canplay"
     @timeupdate="audioStore.timeChange"
-    :src="audioStore.audioPath"
+    :src="music"
   >
     <!-- <source :src="audioStore.audioPath" /> -->
   </audio>

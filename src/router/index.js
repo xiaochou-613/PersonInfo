@@ -1,14 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Layout/index.vue'
-import Music from '@/views/Right/Music/index.vue'
-import Search from '@/views/Right/Search/index.vue'
-import music_home from '@/views/Right/Music/components/music_home.vue'
-import music_lyric from '@/views/Right/Music/components/music_lyric.vue'
-import myself from '@/views/Right/Myself/index.vue'
-import set from '@/views/Right/Set/index.vue'
-import undefined404 from '@/views/404/index.vue'
-import nav from '@/views/Right/Navigation/index.vue'
-import plan from '@/views/Right/Plan/index.vue'
+
+const Home = () => import('../views/Layout/index.vue')
+const Music = () => import('@/views/Right/Music/index.vue')
+const Search = () => import('@/views/Right/Search/index.vue')
+const music_home = () => import('@/views/Right/Music/components/music_home.vue')
+const music_lyric = () =>
+  import('@/views/Right/Music/components/music_lyric.vue')
+const myself = () => import('@/views/Right/Myself/index.vue')
+const set = () => import('@/views/Right/Set/index.vue')
+const undefined404 = () => import('@/views/404/index.vue')
+const nav = () => import('@/views/Right/Navigation/index.vue')
+const plan = () => import('@/views/Right/Plan/index.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
