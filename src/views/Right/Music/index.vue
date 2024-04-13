@@ -17,12 +17,13 @@ const canplay = () => {
   audioRef.value.play()
 }
 
-watch(()=>audioStore.audioPath,()=>{
-  if(audioStore.audioPath === '暗号.mp3')
-      music.value = anhao 
-  else if(audioStore.audioPath === '七里香.mp3')
-      music.value = qilixiang
-})
+watch(
+  () => audioStore.audioPath,
+  () => {
+    if (audioStore.audioPath === '暗号.mp3') music.value = anhao
+    else if (audioStore.audioPath === '七里香.mp3') music.value = qilixiang
+  }
+)
 </script>
 
 <template>

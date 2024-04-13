@@ -1,5 +1,4 @@
 <script setup>
-// import { words } from '../data'
 import { ref, onMounted } from 'vue'
 import Music_col from './music_col.vue'
 import { useAudioStore } from '@/store/audio'

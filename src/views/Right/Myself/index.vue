@@ -1,7 +1,7 @@
 <script setup>
 import { getSpeakeveryday2 } from '@/apis/index'
 import { ref, watch } from 'vue'
-import { ElNotification } from 'element-plus'
+import Toast from '@/components/index'
 
 //文心一言
 const text = ref('正在加载中.. .. ..')
@@ -43,10 +43,7 @@ watch(infoDiv, () => {
 
 //提示双击关闭
 const open = () => {
-  ElNotification({
-    title: '提示',
-    message: '双击可关闭'
-  })
+  Toast('双击可关闭')
 }
 </script>
 
