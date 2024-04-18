@@ -52,6 +52,10 @@ const router = createRouter({
         {
           path: '/set',
           component: set
+        },
+        {
+          path: '/about',
+          component: import('@/views/Right/About/index.vue')
         }
       ]
     },

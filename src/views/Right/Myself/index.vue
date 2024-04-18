@@ -14,7 +14,7 @@ getText()
 //联系方式卡片
 const showInfo = ref(false)
 const show = () => {
-  showInfo.value = !showInfo.value
+  showInfo.value = true
   open()
 }
 
@@ -45,6 +45,33 @@ watch(infoDiv, () => {
 const open = () => {
   Toast('双击可关闭')
 }
+const close = () => {
+  showInfo.value = false
+}
+//其他链接
+const addFriend = (type) => {
+  switch (type) {
+    case 'qq':
+      window.open('https://qm.qq.com/q/Eu3bc8dOZq')
+      break
+    case 'twitter':
+      window.open('https://twitter.com/zzz0613jk')
+      break
+    case 'github':
+      window.open('https://github.com/xiaochou-613')
+      break
+    case 'bilibili':
+      window.open('https://space.bilibili.com/302644526?spm_id_from=666.25.0.0')
+      break
+    case 'dy':
+      window.open(
+        'https://www.douyin.com/user/MS4wLjABAAAAXyra2HHZUHu7Z-gAKrxN21pUiXZQpDNuZb56ZvYJ1vg'
+      )
+      break
+    default:
+      break
+  }
+}
 </script>
 
 <template>
@@ -63,33 +90,43 @@ const open = () => {
 
         <div class="contact">
           <h3>联系我</h3>
-          <div class="icon" @click="show">
-            <span class="newicon iconfont icon-QQ"></span>
-            <span class="newicon iconfont icon-weixin"></span>
-            <span class="newicon iconfont icon-14"></span>
+          <div class="icon">
+            <span
+              class="newicon iconfont icon-QQ"
+              @click="addFriend('qq')"
+            ></span>
+            <span class="newicon iconfont icon-weixin" @click="show"></span>
+            <span
+              class="newicon iconfont icon-14"
+              @click="addFriend('twitter')"
+            ></span>
           </div>
-          <div class="icon" @click="show">
-            <span class="newicon iconfont icon-GitHub"></span>
-            <span class="newicon iconfont icon-bilibili"></span>
-            <span class="newicon iconfont icon-douyin"></span>
+          <div class="icon">
+            <span
+              class="newicon iconfont icon-GitHub"
+              @click="addFriend('github')"
+            ></span>
+            <span
+              class="newicon iconfont icon-bilibili"
+              @click="addFriend('bilibili')"
+            ></span>
+            <span
+              class="newicon iconfont icon-douyin"
+              @click="addFriend('dy')"
+            ></span>
           </div>
         </div>
 
         <!-- 使用transition包裹要显示的div -->
-        <transition name="fade">
-          <div
-            v-if="showInfo"
-            ref="infoDiv"
-            class="info fade-in"
-            @dblclick="showInfo = false"
-          >
-            <div>
-              <!-- 不可拖拽 -->
-              <img src="@/image/wx.jpg" draggable="false" />
-              <p>要开始我们的故事了吗？，想要其他联系方式，得靠你的实力咯 ~</p>
-            </div>
+        <!-- <transition name="fade"> -->
+        <div v-if="showInfo" ref="infoDiv" class="info" @dblclick="close">
+          <div>
+            <!-- 不可拖拽 -->
+            <img src="@/image/wx.jpg" draggable="false" />
+            <p>要开始我们的故事了吗？😍</p>
           </div>
-        </transition>
+        </div>
+        <!-- </transition> -->
       </div>
     </main>
 
@@ -173,15 +210,6 @@ footer {
     margin-top: 20px;
   }
 }
-/* 定义动画效果 */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s; /* 过渡动画时间 */
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0; /* 初始状态或离开时状态 */
-}
 
 header {
   max-height: 211px;
@@ -255,6 +283,7 @@ main {
   -webkit-backdrop-filter: blur(3px);
   user-select: none;
   box-sizing: border-box;
+  animation: optyin 0.5s ease-in-out forwards;
   div {
     display: flex;
     align-items: center;
@@ -276,6 +305,23 @@ main {
 }
 .invisible {
   display: none;
+}
+
+@keyframes optyin {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes optyout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 .myInfo {

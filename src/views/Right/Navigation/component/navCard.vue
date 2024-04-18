@@ -62,7 +62,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style>
+<style scoped>
 .box {
   width: 30%;
   height: 90px;

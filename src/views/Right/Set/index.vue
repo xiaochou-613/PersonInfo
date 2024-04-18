@@ -29,6 +29,7 @@ const uploadName = () => {
               v-model="name"
               @blur="uploadName"
               class="reach inp"
+              placeholder="小江子"
             />
           </div>
         </li>
@@ -95,6 +96,10 @@ const uploadName = () => {
       height: 46px;
       border: 2px dashed rgb(252, 213, 228);
       border-radius: 22px;
+      outline: none;
+      color: rgb(255 78 146);
+      font-weight: bold;
+      padding-left: 22px;
     }
   }
 }

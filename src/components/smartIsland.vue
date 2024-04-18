@@ -114,7 +114,6 @@ p {
   100% {
     /* Use "to" instead of 100% for clarity */
     top: -3%;
-    display: none;
   }
 }
 </style>

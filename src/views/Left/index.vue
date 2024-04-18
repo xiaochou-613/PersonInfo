@@ -11,7 +11,8 @@ content.value = [
   { title: '我的计划', color: 'rgb(99, 127, 132)', address: '/plan' },
   { title: '播放音乐', color: 'rgb(0, 207, 162)', address: '/music' },
   { title: '导航', color: 'rgb(120, 207, 12)', address: '/nav' },
-  { title: '设置', color: 'rgb(241, 54, 127)', address: '/set' }
+  { title: '设置', color: 'rgb(241, 54, 127)', address: '/set' },
+  { title: '关于', color: 'rgb(21, 154, 127)', address: '/about' }
 ]
 
 //点击中的选项

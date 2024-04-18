@@ -163,7 +163,7 @@ header {
   }
 }
 main {
-  height: 547px;
+  height: 545px;
   overflow: auto;
 
   ul {
