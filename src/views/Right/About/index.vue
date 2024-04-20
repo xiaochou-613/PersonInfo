@@ -1,16 +1,26 @@
 <script setup>
 import Toast from '@/components/index'
-let count = 929
+let count = 896
+//一行32
+const countNum = (e) => {
+  //排除重复
+  if (e.target.classList.contains('boxActive')) return
 
-const active = (e) => {
   e.target.classList.add('boxActive')
   const num = Math.random() * 3
   e.target.style.animationDuration = 1 + num + 's'
-}
 
-const countNum = () => {
+  // 监听动画结束事件
+  e.target.addEventListener(
+    'animationend',
+    () => {
+      e.target.classList.remove('boxActive')
+      e.target.style.visibility = 'hidden'
+    },
+    { once: true }
+  )
+
   count--
-  console.log(count)
   if (count === 0) Toast('你怎么这么无聊。')
 }
 </script>
@@ -26,9 +36,8 @@ const countNum = () => {
     <main>
       <div
         class="box"
-        v-for="item in 928"
+        v-for="item in 896"
         :key="item"
-        @mousemove="active"
         @mouseenter="countNum"
       ></div>
     </main>
@@ -56,7 +65,7 @@ main {
   align-content: flex-start;
   box-sizing: border-box;
   position: absolute;
-  top: 0px;
+  top: 5px;
   left: 0px;
 }
 .info {
@@ -79,6 +88,7 @@ h1 {
 }
 .boxActive {
   background-color: #0f0;
+  border: none;
   box-shadow:
     0 0 10px #0f05,
     0 0 10px #0f05,

@@ -11,6 +11,7 @@ const set = () => import('@/views/Right/Set/index.vue')
 const undefined404 = () => import('@/views/404/index.vue')
 const nav = () => import('@/views/Right/Navigation/index.vue')
 const plan = () => import('@/views/Right/Plan/index.vue')
+const about = () => import('@/views/Right/About/index.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,11 +21,11 @@ const router = createRouter({
       component: Home,
       children: [
         {
-          path: '',
+          path: '/myPage',
           component: myself
         },
         {
-          path: '/baidu',
+          path: '',
           component: Search
         },
         {
@@ -55,7 +56,8 @@ const router = createRouter({
         },
         {
           path: '/about',
-          component: import('@/views/Right/About/index.vue')
+          component: about,
+          meta: { keepAlive: true }
         }
       ]
     },

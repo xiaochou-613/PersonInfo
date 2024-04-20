@@ -32,7 +32,7 @@ defineProps({
   border-radius: 50px;
   /* background-color: black; */
   background-color: white;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
   color: black;
   text-align: center;
   /* line-height: 60px; */
@@ -61,6 +61,8 @@ p {
   line-height: 60px;
   margin: 0px;
   float: left;
+  transition: all 0.2s ease-in;
+  animation: pin 0.5s ease-in forwards;
 }
 
 @keyframes inShow {
@@ -114,6 +116,25 @@ p {
   100% {
     /* Use "to" instead of 100% for clarity */
     top: -3%;
+  }
+}
+
+@keyframes pin {
+  0% {
+    font-size: 0;
+    opacity: 0;
+  }
+  50% {
+    font-size: 5px;
+    opacity: 0.5;
+  }
+  75% {
+    font-size: 10px;
+    opacity: 0.6;
+  }
+  100% {
+    font-size: 16px;
+    opacity: 1;
   }
 }
 </style>

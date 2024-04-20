@@ -1,42 +1,4 @@
-<script setup>
-import { ref, onMounted, watch } from 'vue'
-import { useAudioStore } from '@/store/audio.js'
-import anhao from '@/music/暗号.mp3'
-import qilixiang from '@/music/七里香.mp3'
-
-const audioRef = ref(null)
-const audioStore = useAudioStore()
-
-const music = ref()
-onMounted(() => {
-  audioStore.audio = audioRef.value
-})
-
-const canplay = () => {
-  audioStore.totalTime = audioStore.formatTime(audioRef.value.duration)
-  audioRef.value.play()
-}
-
-watch(
-  () => audioStore.audioPath,
-  () => {
-    if (audioStore.audioPath === '暗号.mp3') music.value = anhao
-    else if (audioStore.audioPath === '七里香.mp3') music.value = qilixiang
-  }
-)
-</script>
-
 <template>
-  <!-- 放在这里解决路由跳转刷新的问题 -->
-  <audio
-    ref="audioRef"
-    @canplay="canplay"
-    @timeupdate="audioStore.timeChange"
-    :src="music"
-  >
-    <!-- <source :src="audioStore.audioPath" /> -->
-  </audio>
-
   <router-view v-slot="{ Component }">
     <transition name="fade" mode="out-in">
       <keep-alive>

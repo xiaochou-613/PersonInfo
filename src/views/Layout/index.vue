@@ -1,10 +1,15 @@
 <script setup>
 import left_list from '../Left/index.vue'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
+import { useAudioStore } from '@/store/audio.js'
+import anhao from '@/music/暗号.mp3'
+import qilixiang from '@/music/七里香.mp3'
 import anime from 'animejs'
 
+//开场动画
 const content = ref(null)
 onMounted(() => {
+  audioStore.audio = audioRef.value
   const time = setTimeout(() => {
     anime({
       targets: content.value,
@@ -14,11 +19,38 @@ onMounted(() => {
         clearTimeout(time)
       }
     })
-  }, 500)
+  }, 300)
 })
+
+//音乐持久化
+const audioRef = ref(null)
+const audioStore = useAudioStore()
+const music = ref()
+const canplay = () => {
+  audioStore.totalTime = audioStore.formatTime(audioRef.value.duration)
+  audioRef.value.play()
+}
+
+watch(
+  () => audioStore.audioPath,
+  () => {
+    if (audioStore.audioPath === '暗号.mp3') music.value = anhao
+    else if (audioStore.audioPath === '七里香.mp3') music.value = qilixiang
+  }
+)
 </script>
 
 <template>
+  <!-- 放在这里解决路由跳转刷新的问题，又能解决跳转路由暂停的问题 -->
+  <audio
+    ref="audioRef"
+    @canplay="canplay"
+    @timeupdate="audioStore.timeChange"
+    :src="music"
+  >
+    <!-- <source :src="audioStore.audioPath" /> -->
+  </audio>
+
   <div class="container" ref="content">
     <div class="vector">
       <div class="left">
@@ -26,7 +58,11 @@ onMounted(() => {
         <img class="nv" src="@/image/坐姿女.png" alt="" />
       </div>
       <div class="right">
-        <RouterView></RouterView>
+        <router-view v-slot="{ Component }">
+          <keep-alive>
+            <component :is="Component" />
+          </keep-alive>
+        </router-view>
       </div>
       <div class="content"></div>
     </div>

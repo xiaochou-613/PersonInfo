@@ -6,8 +6,8 @@ const router = useRouter()
 
 const content = ref()
 content.value = [
-  { title: '个人主页', color: 'rgb(107, 86, 115)', address: '/' },
-  { title: '百度一下', color: 'rgb(162, 48, 18)', address: '/baidu' },
+  { title: '个人主页', color: 'rgb(107, 86, 115)', address: '/myPage' },
+  { title: '百度一下', color: 'rgb(162, 48, 18)', address: '/' },
   { title: '我的计划', color: 'rgb(99, 127, 132)', address: '/plan' },
   { title: '播放音乐', color: 'rgb(0, 207, 162)', address: '/music' },
   { title: '导航', color: 'rgb(120, 207, 12)', address: '/nav' },
