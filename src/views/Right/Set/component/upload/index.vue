@@ -35,7 +35,6 @@ const upload = () => {
       if (imageData) {
         // 修改图片
         userStore.updateUserInfo({ image: imageData })
-        console.log(imageData)
       }
     }
     reader.readAsDataURL(uploadFile.value.files[0])

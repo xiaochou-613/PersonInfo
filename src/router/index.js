@@ -56,8 +56,7 @@ const router = createRouter({
         },
         {
           path: '/about',
-          component: about,
-          meta: { keepAlive: true }
+          component: about
         }
       ]
     },

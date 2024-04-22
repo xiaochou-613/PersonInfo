@@ -30,7 +30,6 @@ request.interceptors.response.use(
     // 对响应数据做点什么
     const res = response.data
     if (res.status !== 200) {
-      console.log(res)
       Toast(res.msg)
       return Promise.reject(res.msg)
     }

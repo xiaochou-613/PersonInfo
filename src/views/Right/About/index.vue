@@ -1,4 +1,8 @@
 <script setup>
+defineOptions({
+  name: 'AboutPage'
+})
+
 import Toast from '@/components/index'
 let count = 896
 //一行32

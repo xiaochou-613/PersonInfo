@@ -190,183 +190,189 @@ const addFriend = (type) => {
   </div>
 </template>
 
-<style scoped>
-footer {
-  width: 100%;
-  height: 30px;
-  /* line-height: 30px; */
-  text-align: center;
-  float: left;
-  margin-top: 20px;
-  color: rgba(0, 0, 0, 0.4);
-  font-size: 14px;
-}
-.prize {
-  float: left;
-  img {
-    width: 250px;
-    max-height: 300px;
-    margin-left: 58px;
-    margin-top: 20px;
-  }
-}
-
-header {
-  max-height: 211px;
-  overflow: hidden;
-  img {
+<style lang="scss" scoped>
+@media screen and (min-width: 1500px) {
+  footer {
     width: 100%;
-    border-top-right-radius: 25px;
-  }
-}
-.btn {
-  position: relative;
-  left: 416px;
-  top: -22px;
-  background-color: #6e5475;
-  border-radius: 15px;
-  border: none;
-  width: 120px;
-  height: 41px;
-  color: white;
-}
-main {
-  max-height: 200px;
-  margin-left: 50px;
-  img {
-    width: 150px;
-    height: 150px;
+    height: 30px;
+    /* line-height: 30px; */
+    text-align: center;
     float: left;
+    margin-top: 20px;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 14px;
+  }
+  .prize {
+    float: left;
+    img {
+      width: 250px;
+      max-height: 300px;
+      margin-left: 58px;
+      margin-top: 20px;
+    }
+  }
+
+  header {
+    max-height: 211px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      border-top-right-radius: 25px;
+    }
+  }
+  .btn {
+    position: relative;
+    left: 416px;
+    top: -22px;
+    background-color: #6e5475;
     border-radius: 15px;
+    border: none;
+    width: 120px;
+    height: 41px;
+    color: white;
   }
-  .text {
-    width: 300px;
-    height: 150px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-    margin-left: 51px;
-    vertical-align: middle;
-    float: left;
-    h3 {
-      font-size: xx-large;
-    }
-    p {
-      margin-top: 10px;
-      /* font-size: larger; */
-    }
-  }
-  .contact {
-    .newicon {
-      margin-right: 30px;
-      font-size: 40px;
-    }
-    .icon :hover {
-      /* transform: scale(1.1); */
-      /* font-size: 50px; */
-      color: #6e5475;
-    }
-  }
-}
-.info {
-  position: absolute; /* 修改为绝对定位 */
-  top: 386px; /* 调整位置 */
-  right: 573px;
-  width: 300px;
-  height: 200px;
-  background: rgba(255, 255, 255, 0.6);
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(3px); /* 调整模糊程度 */
-  border-radius: 10px; /* 可选：使边角更圆润 */
-  overflow: hidden;
-  -webkit-backdrop-filter: blur(3px);
-  user-select: none;
-  box-sizing: border-box;
-  animation: optyin 0.5s ease-in-out forwards;
-  div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  main {
+    max-height: 200px;
+    margin-left: 50px;
     img {
       width: 150px;
-      height: 100%;
+      height: 150px;
+      float: left;
+      border-radius: 15px;
     }
-    p {
-      font-weight: bolder;
-      font-size: 18px;
-      line-height: 26px;
-      font-family: cursive;
-    }
-  }
-}
-.info.info_active {
-  cursor: move;
-}
-.invisible {
-  display: none;
-}
-
-@keyframes optyin {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes optyout {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-.myInfo {
-  clear: both;
-  hr {
-    border: 2px solid #6e5475;
-    margin-top: 51px;
-  }
-  .myself {
-    width: 100%;
-
-    .infoTitle {
-      width: 30%;
+    .text {
+      width: 300px;
+      height: 150px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+      margin-left: 51px;
+      vertical-align: middle;
       float: left;
       h3 {
-        margin-top: 60px;
-        margin-left: 100px;
         font-size: xx-large;
-
-        color: #6e5475;
-        background: linear-gradient(60deg, #ffbac3, #c5c1ff, #6e5475) center;
-        background-size: 100% 35%;
-        background-position-y: 88%;
-        background-repeat: no-repeat;
-        transition: all 0.5s;
       }
-      h3:hover {
-        background-size: 100% 10%;
-        background-position-y: 88%;
-        padding-left: 29px;
+      p {
+        margin-top: 10px;
+        /* font-size: larger; */
       }
     }
-    .infoContent {
-      width: 70%;
-      margin-top: 60px;
-      float: right;
-      p {
-        text-align: left;
-        line-height: 30px;
-        text-indent: 2em;
-        text-shadow: 10px 10px 10px #909090;
-        border-bottom: 1px dashed rgba(40, 40, 40, 0.2);
-        max-width: 650px;
+    .contact {
+      .newicon {
+        margin-right: 30px;
+        font-size: 40px;
+      }
+      .icon :hover {
+        /* transform: scale(1.1); */
+        /* font-size: 50px; */
+        color: #6e5475;
       }
     }
   }
+  .info {
+    position: absolute; /* 修改为绝对定位 */
+    top: 386px; /* 调整位置 */
+    right: 573px;
+    width: 300px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(3px); /* 调整模糊程度 */
+    border-radius: 10px; /* 可选：使边角更圆润 */
+    overflow: hidden;
+    -webkit-backdrop-filter: blur(3px);
+    user-select: none;
+    box-sizing: border-box;
+    animation: optyin 0.5s ease-in-out forwards;
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 150px;
+        height: 100%;
+      }
+      p {
+        font-weight: bolder;
+        font-size: 18px;
+        line-height: 26px;
+        font-family: cursive;
+      }
+    }
+  }
+  .info.info_active {
+    cursor: move;
+  }
+  .invisible {
+    display: none;
+  }
+
+  @keyframes optyin {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes optyout {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  .myInfo {
+    clear: both;
+    hr {
+      border: 2px solid #6e5475;
+      margin-top: 51px;
+    }
+    .myself {
+      width: 100%;
+
+      .infoTitle {
+        width: 30%;
+        float: left;
+        h3 {
+          margin-top: 60px;
+          margin-left: 100px;
+          font-size: xx-large;
+
+          color: #6e5475;
+          background: linear-gradient(60deg, #ffbac3, #c5c1ff, #6e5475) center;
+          background-size: 100% 35%;
+          background-position-y: 88%;
+          background-repeat: no-repeat;
+          transition: all 0.5s;
+        }
+        h3:hover {
+          background-size: 100% 10%;
+          background-position-y: 88%;
+          padding-left: 29px;
+        }
+      }
+      .infoContent {
+        width: 70%;
+        margin-top: 60px;
+        float: right;
+        p {
+          text-align: left;
+          line-height: 30px;
+          text-indent: 2em;
+          text-shadow: 10px 10px 10px #909090;
+          border-bottom: 1px dashed rgba(40, 40, 40, 0.2);
+          max-width: 650px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  @import '@/mobileCSS/myself';
 }
 </style>

@@ -1,0 +1,94 @@
+
+.homepage{
+    height: 100%;
+    overflow: auto;
+}
+.homepage>header{
+    height:100px;
+    overflow: hidden;
+    img{
+        width: 100vw;
+    }
+}
+.btn{
+    display: block;
+    width: 100px;
+    height: 40px;
+    background-color: rgb(86, 67, 104);
+    border-radius: 15px;
+    color: white;
+    position: relative;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+main{
+    img{
+        width: 100px;
+        height: 100px;
+        border-radius: 15px;
+        margin-left: 12%;
+        margin-right: 10px;
+        float: left;
+    }
+    .text{
+        transform: translateY(10%);
+        p{
+            margin-top: 6px;
+        }
+    }
+
+    .contact{
+        clear: both;
+        // display:none
+        .icon{
+            float: left;
+        }
+        visibility: hidden;
+    }
+
+}   
+.myInfo {
+    clear: both;
+    hr {
+      border: 2px solid #6e5475;
+    }
+    .myself {
+      width: 100%;
+
+      .infoTitle {
+        width: 30%;
+        float: left;
+        h3 {
+          margin-top: 60px;
+          margin-left: 100px;
+          font-size: xx-large;
+
+          color: #6e5475;
+          background: linear-gradient(60deg, #ffbac3, #c5c1ff, #6e5475) center;
+          background-size: 100% 35%;
+          background-position-y: 88%;
+          background-repeat: no-repeat;
+          transition: all 0.5s;
+        }
+        h3:hover {
+          background-size: 100% 10%;
+          background-position-y: 88%;
+          padding-left: 29px;
+        }
+      }
+      .infoContent {
+        width: 70%;
+        margin-top: 60px;
+        float: right;
+        p {
+          text-align: left;
+          line-height: 30px;
+          text-indent: 2em;
+          text-shadow: 10px 10px 10px #909090;
+          border-bottom: 1px dashed rgba(40, 40, 40, 0.2);
+          max-width: 650px;
+        }
+      }
+    }
+}

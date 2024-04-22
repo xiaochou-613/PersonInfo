@@ -1,0 +1,37 @@
+.MO-container {
+  position: fixed;
+  top: 0%;
+  left: 0;
+  bottom: 0%;
+  right: 0;
+  margin: auto;
+  width: 100vw;
+  height: 0px;
+  transition: 0.6s ease-out;
+  overflow: hidden;
+
+  .MO-vector {
+    width: 100vw;
+    height: 100vh;
+    transition: 0.4s linear;
+    display: grid;
+    grid-template-rows: 10% 1fr 15%;
+    .MO-main {
+      border-radius: 25px;
+      width: 100vw;
+      overflow: hidden;
+    }
+    .MO-info{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bolder;
+      img{
+        width: 30px;
+        height: 30px;
+        border-radius: 10px;
+        margin-right: 10px;
+      }
+    }
+  }
+}

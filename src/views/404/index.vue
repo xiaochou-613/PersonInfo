@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
   <div>404</div>
   <p>你怎么跑丢了？</p>

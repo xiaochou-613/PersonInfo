@@ -42,7 +42,6 @@ export const usePlanStore = defineStore('Plan', () => {
   //更新计划 - 是否完成
   const update_Plan = async (data) => {
     const res = await updatePlan(data)
-    console.log(res)
     if (res.status === 200) get_Plan()
   }
 
@@ -77,8 +76,6 @@ export const usePlanStore = defineStore('Plan', () => {
     //已经完成的
     const doneItems = planData.value.filter((item) => item.isDone)
     planData.value = [...highItems, ...normalItems, ...doneItems]
-
-    console.log(planData.value)
 
     remove_Done()
   }
@@ -122,8 +119,6 @@ export const usePlanStore = defineStore('Plan', () => {
         )
       }
     }
-
-    console.log(finishData.value)
   }
 
   return {
