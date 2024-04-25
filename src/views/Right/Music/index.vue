@@ -9,10 +9,6 @@
 </template>
 
 <style scoped>
-a {
-  padding: 20px;
-}
-
 .fade-enter-from,
 .fade-leave-to {
   /* 定义进入开始和离开结束的透明度为 0 */

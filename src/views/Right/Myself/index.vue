@@ -123,7 +123,8 @@ const addFriend = (type) => {
           <div>
             <!-- 不可拖拽 -->
             <img src="@/image/wx.jpg" draggable="false" />
-            <p>要开始我们的故事了吗？😍</p>
+            <!-- <p>要开始我们的故事了吗？😍</p> -->
+            <p>什么什么。。</p>
           </div>
         </div>
         <!-- </transition> -->
@@ -138,42 +139,34 @@ const addFriend = (type) => {
           <h3>自我介绍</h3>
         </div>
         <div class="infoContent animate__animated animate__flipInX">
-          <p>NAME:&emsp;&emsp;&emsp;小江子</p>
-          <p>SEX:&emsp;&emsp;&emsp;&emsp;显而易见</p>
-          <p>HEIGHT:&emsp;&emsp;&nbsp;迄今为止不到3m</p>
-          <p>LENGTH:&emsp;&emsp;目前暂时不超过18cm</p>
-          <p>
-            HOBBY:&emsp;&emsp;&nbsp;&nbsp;&nbsp;女，其次最近看荒天帝有点无法自拔。可惜已经看完了
-          </p>
-          <p>
-            DREAM:&emsp;&emsp;&nbsp;&nbsp;大不不谈，我想买摩动核敖丙带灯框，希望龙王和仆人双双不歪，
-            但愿能在暑假前找到实习，最好是能财源滚滚，别遇上裁员滚滚
-          </p>
+          <pre>NAME:     小江子</pre>
+          <pre>SEX:      显而易见</pre>
+          <pre>HEIGHT:   迄今为止不到3m</pre>
+          <pre>LENGTH:   目前暂时不超过。</pre>
+          <pre>HOBBY:    女，其次最近看荒天帝有点无法自拔。可惜已经看完了</pre>
+          <pre>
+DREAM:    大不不谈，我想买摩动核敖丙带灯框，希望龙王和仆人双双不歪，但愿能在暑假前找到实习，最好是能财源滚滚，别遇上裁员滚滚</pre
+          >
         </div>
       </div>
       <!-- 专业技能 -->
       <div class="myself">
         <div class="infoTitle">
-          <h3 style="margin-top: 228px">专业技能</h3>
+          <h3 class="marginTop">专业技能</h3>
         </div>
         <div class="infoContent animate__animated animate__flipInX">
-          <p>HTML/CSS:&emsp; 能看懂，能写出来</p>
-          <p>JavaScript:&emsp;&nbsp; 能看懂，能写出来</p>
-          <p>Vue:&emsp;&emsp;&emsp;&emsp;&nbsp; 能看懂，能写出来</p>
-          <p>微信小程序:&emsp; 看不懂，写不出来</p>
-          <p>
-            PS:&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp; 能看懂，能写出来
-          </p>
-          <p>
-            AI:&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            以上内容全皆有AI自动生成，可见会用
-          </p>
+          <pre>HTML/CSS:     能看懂，能写出来</pre>
+          <pre>JavaScript:   能看懂，能写出来</pre>
+          <pre>Vue:          能看懂，能写出来</pre>
+          <pre>Uniapp:       看不懂，写不出来</pre>
+          <pre>PS:           看不懂，写不出来</pre>
+          <pre>AI:           以上内容全皆有AI自动生成，可见会用</pre>
         </div>
       </div>
       <!-- 荣誉证书 -->
       <div class="myself">
         <div class="infoTitle">
-          <h3 style="margin-top: 228px">荣誉证书</h3>
+          <h3 class="marginTop" id="h3">荣誉证书</h3>
         </div>
         <div class="prize">
           <img src="@/image/金奖.png" />
@@ -192,6 +185,9 @@ const addFriend = (type) => {
 
 <style lang="scss" scoped>
 @media screen and (min-width: 1500px) {
+  .marginTop {
+    margin-top: 228px;
+  }
   footer {
     width: 100%;
     height: 30px;
@@ -213,7 +209,8 @@ const addFriend = (type) => {
   }
 
   header {
-    max-height: 211px;
+    // max-height: 211px;
+    max-height: 144px;
     overflow: hidden;
     img {
       width: 100%;

@@ -8,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-  <!-- 控制台 -->
+  <!-- pc控制台 -->
   <div class="control">
     <div class="col_left">
       <span style="margin-right: 10px" v-if="audioStore.lyricName()">{{
@@ -57,66 +57,74 @@ defineProps({
         class="iconfont icon-geci lyric"
         @click="$router.push(address)"
       ></span>
-      <v-icon icon="mdi-text"></v-icon>
+      <v-icon class="textSet" icon="mdi-text"></v-icon>
     </div>
   </div>
+
+  <!-- mobile -->
 </template>
 
-<style>
-.control {
-  width: 100%;
-  height: 91px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  .col_left {
-    float: left;
-    width: 20%;
-    max-height: 91px;
-    margin-left: 70px;
-    .startTime {
-      float: right;
-      position: relative;
-      top: 26px;
-      opacity: 0.6;
-      left: -8px;
-    }
-  }
-  .col_center {
-    float: left;
-    width: 60%;
-    max-height: 91px;
-    /* padding-top: 10px; */
-    text-align: center;
-    .col_btn {
-      .pause {
-        margin: 0px 20px;
-      }
-    }
-    .linear {
-      margin-top: 10px;
-    }
-  }
-  .col_right {
-    float: left;
-    width: 20%;
+<style lang="scss" scoped>
+@media screen and (min-width: 1500px) {
+  .control {
+    width: 100%;
     height: 91px;
     display: flex;
-    justify-content: right;
     align-items: center;
-    margin-right: 70px;
-    .lyric {
-      font-size: 30px;
-      color: rgb(219, 124, 60);
-      margin-right: 10px;
-    }
-    .endTime {
+    justify-content: center;
+    .col_left {
       float: left;
-      position: relative;
-      top: 24px;
-      left: -62px;
-      opacity: 0.6;
+      width: 20%;
+      max-height: 91px;
+      margin-left: 70px;
+      .startTime {
+        float: right;
+        position: relative;
+        top: 26px;
+        opacity: 0.6;
+        left: -8px;
+      }
+    }
+    .col_center {
+      float: left;
+      width: 60%;
+      max-height: 91px;
+      /* padding-top: 10px; */
+      text-align: center;
+      .col_btn {
+        .pause {
+          margin: 0px 20px;
+        }
+      }
+      .linear {
+        margin-top: 10px;
+      }
+    }
+    .col_right {
+      float: left;
+      width: 20%;
+      height: 91px;
+      display: flex;
+      justify-content: right;
+      align-items: center;
+      margin-right: 70px;
+      .lyric {
+        font-size: 30px;
+        color: rgb(219, 124, 60);
+        margin-right: 10px;
+      }
+      .endTime {
+        float: left;
+        position: relative;
+        top: 24px;
+        left: -62px;
+        opacity: 0.6;
+      }
     }
   }
+}
+
+@media screen and (max-width: 1500px) {
+  @import '@/mobileCSS/music_col';
 }
 </style>

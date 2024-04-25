@@ -82,8 +82,10 @@ watch(
   <div class="MO-container" ref="content" v-else>
     <div class="MO-vector">
       <div class="MO-info">
-        <img v-if="userStore.user[0]" :src="userStore.user[0]?.image" alt="" />
-        <span>{{ userStore.user[0]?.name }}</span>
+        <!-- <img v-if="userStore.user[0]" :src="userStore.user[0]?.image" alt="" />
+        <span>{{ userStore.user[0]?.name }}</span> -->
+        <img src="@/image/QQ.jpg" alt="" />
+        <span>小江子</span>
       </div>
       <div class="MO-main">
         <router-view v-slot="{ Component }">

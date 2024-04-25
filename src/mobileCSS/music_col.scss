@@ -1,0 +1,46 @@
+
+.control{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .col_left{
+        span{
+            display: none;
+        }
+        height: 100%;
+        flex-grow: 1;
+        justify-content: space-between;
+        display: flex;
+        .startTime{
+            align-self: self-end;
+            // justify-self: flex-end;
+        }
+
+    }
+    .col_center{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 2;
+        flex-direction: column;
+        .linear{
+            width: 100%;
+        }
+        .pause{
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
+    .col_right{
+        flex-grow: 1;
+        align-items: center;
+        justify-content: space-between;
+        display: flex;
+        .lyric{
+            font-size:28px;
+        }
+        .textSet{
+            display: none;
+        }
+    }
+}
