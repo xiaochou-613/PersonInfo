@@ -6,8 +6,14 @@ export const getPersonInfo = () => {
   return res
 }
 
-//更新用户信息
-export const updatePersonInfo = (data) => {
-  const res = request.post('api/updatePersonInfo', data)
+//更新用户头像
+export const updatePersonImage = (data) => {
+  const res = request.post('api/updatePersonImage', data)
+  return res
+}
+
+//更新用户名字
+export const updatePersonName = (data) => {
+  const res = request.post('api/updatePersonName', data)
   return res
 }

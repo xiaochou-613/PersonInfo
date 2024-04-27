@@ -1,4 +1,8 @@
-import { getPersonInfo, updatePersonInfo } from '@/apis/person'
+import {
+  getPersonInfo,
+  updatePersonImage,
+  updatePersonName
+} from '@/apis/person'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
@@ -11,9 +15,15 @@ export const useUserStore = defineStore('user', () => {
     user.value = res.data
   }
 
-  //修改用户信息  {name,image,userId}
-  const updateUserInfo = async (data) => {
-    const res = await updatePersonInfo({ ...user.value[0], ...data })
+  //修改用户头像
+  const updateUserInfoimage = async (image) => {
+    const res = await updatePersonImage({ ...user.value[0], ...image })
+    if (res.status === 200) getUserInfo()
+  }
+
+  //修改用户名称
+  const updateUserInfoname = async (name) => {
+    const res = await updatePersonName({ ...user.value[0], ...name, image: '' })
     if (res.status === 200) getUserInfo()
   }
 
@@ -21,6 +31,7 @@ export const useUserStore = defineStore('user', () => {
     user,
 
     getUserInfo,
-    updateUserInfo
+    updateUserInfoimage,
+    updateUserInfoname
   }
 })

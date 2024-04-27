@@ -22,3 +22,7 @@ app.mount('#app')
 // git add .
 // git commit -m "..."
 // git push -u origin master
+
+//回退
+// git log 找到想要回退的版本的hash值
+// git reset --hard <commit_ID>

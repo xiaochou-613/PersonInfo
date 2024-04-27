@@ -3,18 +3,17 @@ import Switch_theme from './component/switch.vue'
 import NavButton from './component/NavButton.vue'
 import upload from './component/upload/index.vue'
 import { ref } from 'vue'
-
+import { useUserStore } from '@/store/user'
+const userStore = useUserStore()
 //将姓名和图片存入本地
 const name = ref()
 
-const uploadName = () => {
-  localStorage.setItem('PerosnInfo_name', name.value)
+const uploadName = async () => {
+  await userStore.updateUserInfoname({ name: name.value })
 }
 </script>
 
 <template>
-  <!-- <NavButton></NavButton> -->
-  <!-- <h1>设置</h1> -->
   <div class="set_content">
     <div class="container">
       <ul>
@@ -59,10 +58,6 @@ const uploadName = () => {
 </template>
 
 <style scoped>
-/* h1 {
-  position: relative;
-  z-index: 9;
-} */
 .set_content {
   padding: 100px 300px 0px 300px;
   font-size: 20px;

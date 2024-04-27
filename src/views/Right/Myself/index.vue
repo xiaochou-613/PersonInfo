@@ -355,8 +355,8 @@ DREAM:    大不不谈，我想买摩动核敖丙带灯框，希望龙王和仆�
       .infoContent {
         width: 70%;
         margin-top: 60px;
-        float: right;
-        p {
+        float: left;
+        pre {
           text-align: left;
           line-height: 30px;
           text-indent: 2em;

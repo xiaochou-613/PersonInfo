@@ -34,7 +34,7 @@ const upload = () => {
       let imageData = event.target.result
       if (imageData) {
         // 修改图片
-        userStore.updateUserInfo({ image: imageData })
+        userStore.updateUserInfoimage({ image: imageData })
       }
     }
     reader.readAsDataURL(uploadFile.value.files[0])
@@ -50,7 +50,7 @@ const upload = () => {
       class="drop-here"
       ref="uploadFile"
       @change="upload"
-      accept=".jpg, .jpeg, .png"
+      accept=".jpg"
     />
     <div class="text text-drop">+</div>
     <div class="text text-upload">...</div>

@@ -1,10 +1,15 @@
 <script setup>
 import { useAudioStore } from '@/store/audio.js'
+import { useRouter } from 'vue-router'
 const audioStore = useAudioStore()
-
-defineProps({
-  address: String
-})
+const router = useRouter()
+const routerMusic = () => {
+  if (router.currentRoute.value.path == '/music') {
+    router.push('/music/lyric')
+  } else {
+    router.push('/music')
+  }
+}
 </script>
 
 <template>
@@ -55,13 +60,11 @@ defineProps({
       <span
         v-if="audioStore.lyric.length"
         class="iconfont icon-geci lyric"
-        @click="$router.push(address)"
+        @click="routerMusic"
       ></span>
       <v-icon class="textSet" icon="mdi-text"></v-icon>
     </div>
   </div>
-
-  <!-- mobile -->
 </template>
 
 <style lang="scss" scoped>

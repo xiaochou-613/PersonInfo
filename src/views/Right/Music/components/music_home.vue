@@ -1,5 +1,4 @@
 <script setup>
-import Music_col from './music_col.vue'
 import { useAudioStore } from '@/store/audio.js'
 import { inject } from 'vue'
 const audioStore = useAudioStore()
@@ -35,7 +34,7 @@ audioStore.getMusic()
     </div>
     <div class="music_list">
       <v-table height="460px" fixed-header>
-        <!-- 固定表头失效了，未知原因 -->
+        <!-- 固定表头失效了，未知原因，又好了，原因未知 -->
         <thead>
           <tr>
             <th class="text-left">歌名</th>
@@ -62,13 +61,10 @@ audioStore.getMusic()
         </tbody>
       </v-table>
     </div>
-
-    <!-- 控制台 -->
-    <Music_col address="/music/lyric"></Music_col>
   </div>
 
   <!-- mobile -->
-  <div class="music">
+  <div class="music" v-else>
     <header>
       <img src="@/image/猜你喜欢.png" alt="" />
       <h3>猜你喜欢</h3>
@@ -85,9 +81,6 @@ audioStore.getMusic()
         <p>{{ item.singer }}</p>
       </div>
     </main>
-    <footer>
-      <Music_col address="/music/lyric"></Music_col>
-    </footer>
   </div>
 </template>
 
@@ -146,7 +139,7 @@ audioStore.getMusic()
       transition: all 0.2s ease-in-out;
     }
     tr:hover {
-      transform: scaleX(1.03);
+      transform: translateX(-20px);
     }
   }
 }

@@ -3,6 +3,7 @@ import { ref, inject, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store/user'
 const router = useRouter()
+router.replace('/myPage')
 const isPC = inject('device')
 const content = ref()
 content.value = [
@@ -44,7 +45,8 @@ onMounted(() => {
 })
 
 //点击导航
-const nav = (e, index) => {
+const nav = async (e, index) => {
+  await router.push(content.value[index - 1].address)
   const currentLeft = e.target.parentNode.offsetLeft
   const currentWidth = e.target.parentNode.offsetWidth
   slid1.value.style.left = currentLeft + 'px'
@@ -93,17 +95,6 @@ const mouseout = () => {
 
   <!-- mobile -->
   <div class="emun" v-else>
-    <!-- <div
-      class="btn"
-      v-for="item in content"
-      :key="item.title"
-      :style="{ backgroundColor: item.color }"
-      @click="$router.push(item.address)"
-    >
-      <span>{{ item.title }}</span>
-    </div> -->
-
-    <!-- 测试 -->
     <ul id="nav">
       <li class="slide1" ref="slid1"></li>
       <li class="slide2" ref="slid2"></li>

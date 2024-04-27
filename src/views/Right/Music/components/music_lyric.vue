@@ -1,6 +1,5 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import Music_col from './music_col.vue'
 import { useAudioStore } from '@/store/audio'
 const audioStore = useAudioStore()
 
@@ -29,59 +28,61 @@ onMounted(() => {
         </li>
       </ul>
     </div>
-
-    <!-- 控制台 -->
-    <Music_col class="lyric_col" address="/music"></Music_col>
   </div>
 </template>
 
-<style scoped>
-* {
-  margin: 0;
-  padding: 0;
+<style lang="scss" scoped>
+@media screen and (min-width: 1500px) {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  .main {
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .content {
+    width: 100%;
+    height: 500px;
+    /* border: 1px solid white; */
+    overflow: hidden;
+  }
+  .content ul {
+    transition: 0.6s;
+  }
+  audio {
+    width: 440px;
+    margin: 30px;
+  }
+  li {
+    list-style: none;
+    transition: 0.6s;
+    height: 43px;
+    /* border: 1px solid white; */
+    line-height: 30px;
+    color: #555;
+    font-size: x-large;
+  }
+  .active {
+    transform: scale(1.3);
+    /* 使用transform不会引发reflow */
+    color: rgb(255, 134, 54);
+  }
+  .name {
+    margin-top: 100px;
+    margin-bottom: 32px;
+    font-size: xx-large;
+  }
+  .lyric_col {
+    margin-top: 143px;
+  }
 }
-.main {
-  text-align: center;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  /* justify-content: center; */
-  align-items: center;
-  flex-direction: column;
-}
-.content {
-  width: 100%;
-  height: 500px;
-  /* border: 1px solid white; */
-  overflow: hidden;
-}
-.content ul {
-  transition: 0.6s;
-}
-audio {
-  width: 440px;
-  margin: 30px;
-}
-li {
-  list-style: none;
-  transition: 0.6s;
-  height: 43px;
-  /* border: 1px solid white; */
-  line-height: 30px;
-  color: #555;
-  font-size: x-large;
-}
-.active {
-  transform: scale(1.3);
-  /* 使用transform不会引发reflow */
-  color: rgb(255, 134, 54);
-}
-.name {
-  margin-top: 100px;
-  margin-bottom: 32px;
-  font-size: xx-large;
-}
-.lyric_col {
-  margin-top: 143px;
+
+@media screen and (max-width: 1500px) {
+  @import '@/mobileCSS/lyric';
 }
 </style>

@@ -11,6 +11,8 @@
         flex-grow: 1;
         justify-content: space-between;
         display: flex;
+        justify-content: center;
+        align-items: center;
         .startTime{
             align-self: self-end;
             // justify-self: flex-end;
@@ -27,15 +29,18 @@
             width: 100%;
         }
         .pause{
-            margin-left: 10px;
-            margin-right: 10px;
+            margin-left: 20px;
+            margin-right: 20px;
         }
     }
     .col_right{
         flex-grow: 1;
-        align-items: center;
-        justify-content: space-between;
         display: flex;
+        justify-content: center;
+        align-items: center;
+        .endTime{
+            align-self: self-end;
+        }
         .lyric{
             font-size:28px;
         }

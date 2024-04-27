@@ -1,14 +1,35 @@
+<script setup>
+import Music_col from './components/music_col.vue'
+</script>
 <template>
   <router-view v-slot="{ Component }">
     <transition name="fade" mode="out-in">
-      <keep-alive>
+      <div v-if="true" class="comp" :key="Component">
         <component :is="Component" />
-      </keep-alive>
+      </div>
     </transition>
   </router-view>
+  <Music_col class="col"></Music_col>
 </template>
 
 <style scoped>
+@media screen and (min-width: 1500px) {
+  .col {
+    height: 91px;
+  }
+  .comp {
+    height: calc(100% - 91px);
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .col {
+    height: 50px;
+  }
+  .comp {
+    height: calc(100% - 50px);
+  }
+}
 .fade-enter-from,
 .fade-leave-to {
   /* 定义进入开始和离开结束的透明度为 0 */

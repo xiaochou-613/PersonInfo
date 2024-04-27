@@ -88,11 +88,7 @@ watch(
         <span>小江子</span>
       </div>
       <div class="MO-main">
-        <router-view v-slot="{ Component }">
-          <keep-alive include="AboutPage">
-            <component :is="Component" />
-          </keep-alive>
-        </router-view>
+        <router-view></router-view>
       </div>
       <left_list></left_list>
     </div>
