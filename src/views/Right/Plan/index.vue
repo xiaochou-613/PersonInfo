@@ -24,10 +24,6 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <!-- 风格拟物 -->
-  <!-- 有⭕️选项，可填充 -->
-  <!-- 增加数据库。保存所有的计划，并且显示出时间 -->
-  <!-- 字体找个模仿手写的字体 -->
   <div class="plan_cont" ref="Area">
     <div class="plan_box">
       <node></node>

@@ -15,17 +15,12 @@ defineProps({
 <template>
   <!-- 设计一个灵动岛 -->
   <div class="land">
-    <img
-      class="image"
-      draggable="false"
-      src="https://c4.wallpaperflare.com/wallpaper/224/466/325/%E5%8A%A8%E6%BC%AB%E5%9B%BE%E7%89%87-%E9%B2%9C%E8%89%B3%E8%89%B2%E5%BD%A9-hd-wallpaper-preview.jpg"
-    />
-
+    <img class="image" draggable="false" src="@/image/smart.jpg" />
     <p>{{ message }}</p>
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .land {
   width: 220px;
   height: 60px;
@@ -34,14 +29,13 @@ defineProps({
   background-color: white;
   box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
   color: black;
-  text-align: center;
-  /* line-height: 60px; */
-  /* font-size: ; */
   position: absolute;
   top: 7%;
   left: 50%;
   transform: translate(-50%, -50%);
   user-select: none;
+  display: flex;
+  justify-content: center;
   animation:
     inShow 0.5s ease-in forwards,
     OUT 0.5s ease-out forwards 3s;
@@ -49,20 +43,18 @@ defineProps({
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    float: left;
     margin: 5px 5px 0px 5px;
     opacity: 0;
     transition: all 0.2s ease-in;
     animation: contentin 0.5s ease-in forwards;
   }
-}
-p {
-  width: 150px;
-  line-height: 60px;
-  margin: 0px;
-  float: left;
-  transition: all 0.2s ease-in;
-  animation: pin 0.5s ease-in forwards;
+  p {
+    flex: 1;
+    text-align: center;
+    align-self: center;
+    transition: all 0.2s ease-in;
+    animation: pin 0.5s ease-in forwards;
+  }
 }
 
 @keyframes inShow {
@@ -121,19 +113,22 @@ p {
 
 @keyframes pin {
   0% {
-    font-size: 0;
+    transform: scale(0);
     opacity: 0;
   }
   50% {
-    font-size: 5px;
+    /* font-size: 5px; */
+    transform: scale(0.3);
     opacity: 0.5;
   }
   75% {
-    font-size: 10px;
+    /* font-size: 10px; */
+    transform: scale(0.8);
     opacity: 0.6;
   }
   100% {
-    font-size: 16px;
+    /* font-size: 16px; */
+    transform: scale(1);
     opacity: 1;
   }
 }

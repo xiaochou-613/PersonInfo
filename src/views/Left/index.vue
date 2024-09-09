@@ -3,7 +3,7 @@ import { ref, inject, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store/user'
 const router = useRouter()
-router.replace('/myPage')
+// router.replace('/myPage')
 const isPC = inject('device')
 const content = ref()
 content.value = [
@@ -11,6 +11,7 @@ content.value = [
   { title: '百度一下', color: 'rgb(255, 117, 117)', address: '/' },
   { title: '播放音乐', color: 'rgb(0, 207, 162)', address: '/music' },
   { title: '我的计划', color: 'rgb(99, 127, 132)', address: '/plan' },
+  { title: '日记', color: 'rgb(174, 214, 209)', address: '/diary' },
   { title: '导航', color: 'rgb(120, 207, 12)', address: '/nav' },
   { title: '设置', color: 'rgb(241, 54, 127)', address: '/set' },
   { title: '关于', color: 'rgb(21, 154, 127)', address: '/about' }

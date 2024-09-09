@@ -14,7 +14,7 @@ const countNum = (e) => {
   const num = Math.random() * 3
   e.target.style.animationDuration = 1 + num + 's'
 
-  // 监听动画结束事件
+  // // 监听动画结束事件
   e.target.addEventListener(
     'animationend',
     () => {

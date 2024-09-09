@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-const Home = () => import('../views/Layout/index.vue')
+import Home from '../views/Layout/index.vue'
 const Music = () => import('@/views/Right/Music/index.vue')
 const Search = () => import('@/views/Right/Search/index.vue')
 const music_home = () => import('@/views/Right/Music/components/music_home.vue')
@@ -12,6 +12,7 @@ const undefined404 = () => import('@/views/404/index.vue')
 const nav = () => import('@/views/Right/Navigation/index.vue')
 const plan = () => import('@/views/Right/Plan/index.vue')
 const about = () => import('@/views/Right/About/index.vue')
+const diary = () => import('@/views/Right/Diary/index.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -41,6 +42,10 @@ const router = createRouter({
               component: music_lyric
             }
           ]
+        },
+        {
+          path: '/diary',
+          component: diary
         },
         {
           path: '/nav',

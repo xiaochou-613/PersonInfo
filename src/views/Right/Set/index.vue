@@ -6,9 +6,10 @@ import { ref } from 'vue'
 import { useUserStore } from '@/store/user'
 const userStore = useUserStore()
 //将姓名和图片存入本地
-const name = ref()
+const name = ref('')
 
 const uploadName = async () => {
+  if (name.value === '') return
   await userStore.updateUserInfoname({ name: name.value })
 }
 </script>

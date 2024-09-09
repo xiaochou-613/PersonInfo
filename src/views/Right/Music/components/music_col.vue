@@ -10,6 +10,14 @@ const routerMusic = () => {
     router.push('/music')
   }
 }
+
+const switchToAnotherSong = () => {
+  if (audioStore.audioPath === '暗号.mp3') {
+    audioStore.audioPath = '七里香.mp3'
+  } else {
+    audioStore.audioPath = '暗号.mp3'
+  }
+}
 </script>
 
 <template>
@@ -27,7 +35,11 @@ const routerMusic = () => {
     </div>
     <div class="col_center">
       <div class="col_btn">
-        <v-icon icon="mdi-skip-previous-circle" size="x-large"></v-icon>
+        <v-icon
+          @click="switchToAnotherSong"
+          icon="mdi-skip-previous-circle"
+          size="x-large"
+        ></v-icon>
         <v-btn
           variant="tonal"
           rounded="xl"
@@ -42,7 +54,12 @@ const routerMusic = () => {
           ></v-icon>
           <v-icon v-else icon="mdi-play" size="x-large"></v-icon>
         </v-btn>
-        <v-icon icon="mdi-skip-next-circle" size="x-large"> </v-icon>
+        <v-icon
+          icon="mdi-skip-next-circle"
+          size="x-large"
+          @click="switchToAnotherSong"
+        >
+        </v-icon>
       </div>
       <!-- 进度条 -->
       <div class="linear">

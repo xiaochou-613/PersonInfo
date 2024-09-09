@@ -123,8 +123,7 @@ const addFriend = (type) => {
           <div>
             <!-- 不可拖拽 -->
             <img src="@/image/wx.jpg" draggable="false" />
-            <!-- <p>要开始我们的故事了吗？😍</p> -->
-            <p>什么什么。。</p>
+            <p>开始我们的故事</p>
           </div>
         </div>
         <!-- </transition> -->
@@ -142,7 +141,7 @@ const addFriend = (type) => {
           <pre>NAME:     小江子</pre>
           <pre>SEX:      显而易见</pre>
           <pre>HEIGHT:   迄今为止不到3m</pre>
-          <pre>LENGTH:   目前暂时不超过。</pre>
+          <pre>LENGTH:   目前暂时不超过18cm。</pre>
           <pre>HOBBY:    女，其次最近看荒天帝有点无法自拔。可惜已经看完了</pre>
           <pre>
 DREAM:    大不不谈，我想买摩动核敖丙带灯框，希望龙王和仆人双双不歪，但愿能在暑假前找到实习，最好是能财源滚滚，别遇上裁员滚滚</pre
@@ -363,6 +362,7 @@ DREAM:    大不不谈，我想买摩动核敖丙带灯框，希望龙王和仆�
           text-shadow: 10px 10px 10px #909090;
           border-bottom: 1px dashed rgba(40, 40, 40, 0.2);
           max-width: 650px;
+          white-space: pre-wrap; /* 换行符会被视为换行 */
         }
       }
     }
