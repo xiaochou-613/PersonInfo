@@ -1,10 +1,17 @@
 <script setup>
 import { ref } from 'vue'
 import weather from './components/weather.vue'
+import { useRouter } from 'vue-router'
+import { addDiary } from '@/apis/diary'
+import Toast from '@/components/index'
+
+const router = useRouter()
 
 const diary = ref({})
 const pageShow = ref(true)
 const container = ref(null)
+const weatherDiv = ref(null)
+const content = ref('')
 
 const start = () => {
   pageShow.value = false //不显示在页面
@@ -15,6 +22,47 @@ const start = () => {
   diary.value.style.animationPlayState = 'running'
   diary.value.children[0].style.animationPlayState = 'running'
   diary.value.children[1].style.animationPlayState = 'running'
+}
+
+//完成记录 - 添加日记
+const goHome = async () => {
+  //跳转页面
+  router.push('/diary-home')
+
+  if (content.value.trim() === '') {
+    Toast('已移除空日记')
+    return
+  }
+  //添加日记
+  await addDiary({
+    content: content.value,
+    weather: weatherDiv.value.clickCount
+  })
+
+  Toast('记录成功')
+}
+
+const today = new Date()
+const getDate = () => {
+  // 获取年、月、日
+  const year = today.getFullYear()
+  const month = String(today.getMonth() + 1).padStart(2, '0') // 月份从0开始，所以需要+1，并且确保是两位数
+  const day = String(today.getDate()).padStart(2, '0') // 确保日期是两位数
+
+  // 获取星期几
+  const days = [
+    '星期日',
+    '星期一',
+    '星期二',
+    '星期三',
+    '星期四',
+    '星期五',
+    '星期六'
+  ]
+  const dayOfWeek = days[today.getDay()]
+
+  // 拼接字符串
+  return `${year}/${month}/${day} ${dayOfWeek}`
 }
 </script>
 
@@ -43,7 +91,7 @@ const start = () => {
           <div class="diary-title">📕日记</div>
           <p>记录一下今日的所思所想，所见所闻。。</p>
           <div v-if="pageShow">
-            <div class="diary-date">2024/09/06</div>
+            <div class="diary-date">{{ getDate() }}</div>
             <div class="diary-content">&nbsp;&nbsp;请记录今日的日记~</div>
             <div class="diary-content" v-for="i in 7" :key="i">&nbsp;</div>
             <button @click="start" class="btn1">点击记录 ></button>
@@ -51,16 +99,17 @@ const start = () => {
 
           <!-- 编辑状态 -->
           <div v-else class="editState">
-            <button class="btn2">完成</button>
+            <button class="btn2" @click="goHome">完成</button>
             <div class="br"></div>
-            <h4>2024/09/09</h4>
-            <weather class="weatherDiv"></weather>
+            <h4>{{ getDate() }}</h4>
+            <weather class="weatherDiv" ref="weatherDiv"></weather>
             <div class="input-container">
               <div class="lineBox">
                 <p class="line" v-for="i in 15" :key="i">&nbsp;</p>
               </div>
 
               <textarea
+                v-model="content"
                 class="input"
                 autofocus
                 placeholder="在这里写下你的笔记..."

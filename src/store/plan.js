@@ -107,15 +107,15 @@ export const usePlanStore = defineStore('Plan', () => {
     finishTime = Array.from(uniqueEndTimes).map((endTime) => ({
       endTime
     }))
+    //排序时间
+    finishTime.sort((a, b) => new Date(b.endTime) - new Date(a.endTime))
 
     //将数据重组
     for (let i = 0; i < finishTime.length; i++) {
       finishData.value[i] = {
-        time: finishTime[finishTime.length - 1 - i].endTime,
+        time: finishTime[i].endTime,
         data: doneData.value.filter(
-          (item) =>
-            item.endTime.slice(0, 10) ===
-            finishTime[finishTime.length - 1 - i].endTime
+          (item) => item.endTime.slice(0, 10) === finishTime[i].endTime
         )
       }
     }

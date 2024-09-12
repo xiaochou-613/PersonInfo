@@ -7,8 +7,8 @@ const router = useRouter()
 const isPC = inject('device')
 const content = ref()
 content.value = [
-  { title: '个人主页', color: 'rgb(248, 221, 218)', address: '/myPage' },
-  { title: '百度一下', color: 'rgb(255, 117, 117)', address: '/' },
+  { title: '个人主页', color: 'rgb(248, 221, 218)', address: '/' },
+  { title: '百度一下', color: 'rgb(255, 117, 117)', address: '/search' },
   { title: '播放音乐', color: 'rgb(0, 207, 162)', address: '/music' },
   { title: '我的计划', color: 'rgb(99, 127, 132)', address: '/plan' },
   { title: '日记', color: 'rgb(174, 214, 209)', address: '/diary' },

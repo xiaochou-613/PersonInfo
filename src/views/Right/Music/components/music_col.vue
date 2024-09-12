@@ -14,8 +14,10 @@ const routerMusic = () => {
 const switchToAnotherSong = () => {
   if (audioStore.audioPath === '暗号.mp3') {
     audioStore.audioPath = '七里香.mp3'
+    audioStore.play(2)
   } else {
     audioStore.audioPath = '暗号.mp3'
+    audioStore.play(1)
   }
 }
 </script>

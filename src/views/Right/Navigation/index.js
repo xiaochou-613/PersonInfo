@@ -12,6 +12,7 @@ const getAllNav = async () => {
 
   const commonlyUsed = navlist.value.filter((item) => item.tag === '常用')
   const vueUsed = navlist.value.filter((item) => item.tag === 'Vue')
+  const blog = navlist.value.filter((item) => item.tag === '博客')
 
   navData.value = [
     {
@@ -34,6 +35,16 @@ const getAllNav = async () => {
         tagTextColor: '#000000'
       },
       webList: vueUsed
+    },
+    {
+      title: '个人博客',
+      color: {
+        textColor: '#fff',
+        backColor: '#212529',
+        tagColor: '#FF5722',
+        tagTextColor: '#fff'
+      },
+      webList: blog
     }
   ]
 }

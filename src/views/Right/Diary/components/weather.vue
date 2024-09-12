@@ -5,14 +5,17 @@ defineOptions({
 import { ref } from 'vue'
 
 const weather = ref(null)
-let clickCount = 0
+let clickCount = ref(1)
 const switchWeather = () => {
-  weather.value.style.transform = `translateX(${-60 * clickCount}px)`
-  clickCount++
-  if (clickCount === 4) {
-    clickCount = 0
+  weather.value.style.transform = `translateX(${-60 * clickCount.value}px)`
+  clickCount.value++
+  if (clickCount.value === 4) {
+    clickCount.value = 0
   }
 }
+
+//暴露给父组件
+defineExpose({ clickCount })
 </script>
 
 <template>

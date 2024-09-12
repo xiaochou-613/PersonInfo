@@ -13,6 +13,7 @@ const nav = () => import('@/views/Right/Navigation/index.vue')
 const plan = () => import('@/views/Right/Plan/index.vue')
 const about = () => import('@/views/Right/About/index.vue')
 const diary = () => import('@/views/Right/Diary/index.vue')
+const diary_home = () => import('@/views/Right/Diary/diaryHome.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,11 +23,11 @@ const router = createRouter({
       component: Home,
       children: [
         {
-          path: '/myPage',
+          path: '',
           component: myself
         },
         {
-          path: '',
+          path: '/search',
           component: Search
         },
         {
@@ -46,6 +47,10 @@ const router = createRouter({
         {
           path: '/diary',
           component: diary
+        },
+        {
+          path: '/diary-home',
+          component: diary_home
         },
         {
           path: '/nav',
