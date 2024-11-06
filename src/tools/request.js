@@ -4,7 +4,7 @@ import Toast from '@/components/index'
 
 // 创建一个新的axios实例
 const request = axios.create({
-  baseURL: 'http://192.168.1.174:8080/',
+  baseURL: 'http://192.168.1.117:8080/',
   timeout: 5000
 })
 

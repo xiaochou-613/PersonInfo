@@ -77,7 +77,7 @@ const addFriend = (type) => {
 <template>
   <div class="homepage">
     <header>
-      <img src="@/image/雷神.png" alt="" />
+      <img src="@/image/蜡笔小新.png" alt="" />
     </header>
     <button class="btn">个人信息</button>
     <main>
@@ -122,8 +122,8 @@ const addFriend = (type) => {
         <div v-if="showInfo" ref="infoDiv" class="info" @dblclick="close">
           <div>
             <!-- 不可拖拽 -->
-            <img src="@/image/wx.jpg" draggable="false" />
-            <p>开始我们的故事</p>
+            <img src="@/image/wx.jpg" nodraggable="false" />
+            <p>你好，阿爸阿爸阿巴</p>
           </div>
         </div>
         <!-- </transition> -->
@@ -141,8 +141,8 @@ const addFriend = (type) => {
           <pre>NAME:     小江子</pre>
           <pre>SEX:      显而易见</pre>
           <pre>HEIGHT:   迄今为止不到3m</pre>
-          <pre>LENGTH:   目前暂时不超过18cm。</pre>
-          <pre>HOBBY:    女，其次最近看荒天帝有点无法自拔。可惜已经看完了</pre>
+          <pre>LENGTH:   阿爸阿爸爱阿爸等</pre>
+          <pre>HOBBY:    最近看荒天帝有点无法自拔。可惜已经看完了</pre>
           <pre>
 DREAM:    大不不谈，我想买摩动核敖丙带灯框，希望龙王和仆人双双不歪，但愿能在暑假前找到实习，最好是能财源滚滚，别遇上裁员滚滚</pre
           >

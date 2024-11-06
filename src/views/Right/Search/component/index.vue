@@ -2,9 +2,23 @@
 import { ref } from 'vue'
 const SearchText = ref('')
 
-const baidu = () => {
-  if (SearchText.value !== '')
+const prop = defineProps({
+  searchEngine: {
+    type: String,
+    default: 'baidu'
+  }
+})
+console.log(prop.searchEngine)
+
+const seach = () => {
+  if (SearchText.value === '') return
+  if (prop.searchEngine === 'baidu') {
     window.open(`https://www.baidu.com/s?wd=${SearchText.value}`)
+  } else if (prop.searchEngine === 'google') {
+    window.open(`https://www.google.com/search?q=${SearchText.value}`)
+  } else if (prop.searchEngine === 'bing') {
+    window.open(`https://cn.bing.com/search?q=${SearchText.value}`)
+  }
 }
 </script>
 
@@ -22,7 +36,7 @@ const baidu = () => {
           />
         </div>
         <div class="td" id="s-cover">
-          <button type="submit" @click="baidu">
+          <button type="submit" @click="seach">
             <div id="s-circle"></div>
             <span></span>
           </button>

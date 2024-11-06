@@ -22,6 +22,7 @@ defineProps({
 
 <style lang="scss" scoped>
 .land {
+  border: none;
   width: 220px;
   height: 60px;
   border-radius: 50px;

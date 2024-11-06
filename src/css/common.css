@@ -2,3 +2,9 @@
     user-select: none;
     font-family: 'Raleway', sans-serif;
 }
+ul li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
