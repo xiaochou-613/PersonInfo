@@ -16,7 +16,7 @@ onMounted(() => {
 })
 
 const go = () => {
-  if (password.value !== '我是大帅比') {
+  if (password.value !== 'jiangkai') {
     Toast('密码错误,请重试')
     return
   }
