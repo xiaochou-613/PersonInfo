@@ -26,3 +26,7 @@ app.mount('#app')
 //回退
 // git log 找到想要回退的版本的hash值
 // git reset --hard <commit_ID>
+
+//连接github
+// git config --global user.email "jvip6@icloud.com"
+// git config --global user.name "xiaochou-613"

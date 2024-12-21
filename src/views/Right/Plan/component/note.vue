@@ -156,6 +156,7 @@ header {
     margin-left: 25px;
     font-size: 19px;
     color: rgb(100, 100, 100);
+    cursor: pointer;
   }
   h1.active {
     font-size: 29px;
@@ -211,6 +212,7 @@ main {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      cursor: default;
     }
     span:hover {
       color: cornflowerblue;

@@ -10,10 +10,6 @@ const props = defineProps({
   color: {
     type: Object,
     require: true
-    //   textColor: '#000',
-    //   backColor: '#7CFC00',
-    //   tagColor: '#FFF44F',
-    //   tagTextColor: '#000'
   },
   tag: {
     type: String,
@@ -62,7 +58,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .box {
   width: 30%;
   height: 90px;
@@ -146,5 +142,8 @@ onMounted(() => {
 }
 .box:active {
   transform: scale(0.9);
+}
+@media screen and (max-width: 1500px) {
+  @import '@/mobileCSS/nav';
 }
 </style>

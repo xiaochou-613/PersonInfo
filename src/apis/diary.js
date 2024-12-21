@@ -11,3 +11,9 @@ export const addDiary = (data) => {
   const res = request.post('/api/addDiary', data)
   return res
 }
+
+//删除日记
+export const delDiary = (index) => {
+  const res = request.post('/api/deleteDiary', { index })
+  return res
+}

@@ -7,8 +7,8 @@ const router = useRouter()
 const isPC = inject('device')
 const content = ref()
 content.value = [
-  { title: '个人主页', color: 'rgb(248, 221, 218)', address: '/' },
-  { title: '百度一下', color: 'rgb(255, 117, 117)', address: '/search' },
+  { title: '个人主页', color: 'rgb(248, 221, 218)', address: '/person' },
+  { title: '百度一下', color: 'rgb(255, 117, 117)', address: '/' },
   { title: '播放音乐', color: 'rgb(0, 207, 162)', address: '/music' },
   { title: '我的计划', color: 'rgb(99, 127, 132)', address: '/plan' },
   { title: '日记', color: 'rgb(174, 214, 209)', address: '/diary' },
@@ -102,15 +102,6 @@ const mouseout = () => {
       <!-- <li ref="emunStart" v-for="item in content.slice(0, 4)" :key="item.title"> -->
       <li ref="emunStart">
         <a
-          @click="(e) => nav(e, 1)"
-          @mouseover="mouseover"
-          @mouseout="mouseout"
-          href="#"
-          >Home</a
-        >
-      </li>
-      <li>
-        <a
           @click="(e) => nav(e, 2)"
           @mouseover="mouseover"
           @mouseout="mouseout"
@@ -120,11 +111,11 @@ const mouseout = () => {
       </li>
       <li>
         <a
-          @click="(e) => nav(e, 3)"
+          @click="(e) => nav(e, 5)"
           @mouseover="mouseover"
           @mouseout="mouseout"
           href="#"
-          >Music</a
+          >Diary</a
         >
       </li>
       <li>
@@ -134,6 +125,15 @@ const mouseout = () => {
           @mouseout="mouseout"
           href="#"
           >Plan</a
+        >
+      </li>
+      <li>
+        <a
+          @click="(e) => nav(e, 6)"
+          @mouseover="mouseover"
+          @mouseout="mouseout"
+          href="#"
+          >Nav</a
         >
       </li>
     </ul>

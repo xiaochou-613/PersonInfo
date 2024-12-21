@@ -125,6 +125,40 @@ const getDate = () => {
 </template>
 
 <style lang="scss" scoped>
+/* 容器的放大动画 */
+@keyframes expand {
+  to {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* 标题的移动动画 */
+@keyframes titleMove {
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    font-size: 30px;
+  }
+}
+//描述说明的移动动画
+@keyframes smallTitleMove {
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    position: absolute;
+    top: 100px;
+    left: 55px;
+    font-size: 14px;
+  }
+}
 body {
   font-family: Arial, sans-serif;
 }
@@ -159,6 +193,7 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 
     img {
       width: 225px;
@@ -317,7 +352,7 @@ ul:hover .page5 {
     .line {
       display: block;
       width: 100%;
-      height: 40px;
+      height: 30px;
       border-bottom: #979595 dashed 1.5px;
     }
   }
@@ -329,7 +364,7 @@ ul:hover .page5 {
   outline: none;
   resize: none;
   font-size: 16px;
-  line-height: 40px;
+  line-height: 43px;
   background-color: transparent;
   padding: 0;
   box-sizing: border-box;
@@ -338,39 +373,7 @@ ul:hover .page5 {
   position: absolute;
   z-index: 999;
 }
-
-/* 容器的放大动画 */
-@keyframes expand {
-  to {
-    width: 100%;
-    height: 100%;
-  }
-}
-
-/* 标题的移动动画 */
-@keyframes titleMove {
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-    position: absolute;
-    top: 50px;
-    left: 50px;
-    font-size: 30px;
-  }
-}
-//描述说明的移动动画
-@keyframes smallTitleMove {
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-    position: absolute;
-    top: 100px;
-    left: 55px;
-    font-size: 14px;
-  }
+@media screen and (max-width: 1500px) {
+  @import '@/mobileCSS/diary';
 }
 </style>

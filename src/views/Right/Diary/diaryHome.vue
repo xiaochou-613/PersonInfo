@@ -1,10 +1,14 @@
 <script setup>
 import chooesDiary from './components/choose.vue'
-import { ref } from 'vue'
-import { getDiary } from '@/apis/diary'
+import { ref, computed } from 'vue'
+import { getDiary, delDiary } from '@/apis/diary'
+import showToast from '@/components'
 
 //获取日记
 const diaryList = ref([])
+const notdelList = computed(() =>
+  diaryList.value.filter((item) => item.isDel === 0)
+)
 const getDiaryList = async () => {
   const res = await getDiary()
   diaryList.value = res.data
@@ -20,7 +24,7 @@ const index = ref(0)
 const image = ref('src/image/sun.png')
 const switchDiary = (i) => {
   index.value = i
-  switch (diaryList.value[i].weather) {
+  switch (notdelList.value[i].weather) {
     case 0:
       image.value = 'src/image/snow.png'
       break
@@ -38,6 +42,18 @@ const switchDiary = (i) => {
       break
   }
 }
+
+//删除日记
+const del = (i) => {
+  delDiary(i)
+    .then(() => {
+      showToast('删除成功')
+      getDiaryList()
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
 </script>
 
 <template>
@@ -49,19 +65,20 @@ const switchDiary = (i) => {
     <div class="content">
       <div class="chooesDiary">
         <chooesDiary
-          v-for="(item, index) in diaryList"
+          v-for="(item, index) in notdelList"
           :key="index"
           :date="item.date"
           :content="item.content"
           :weather="item.weather"
           @click="switchDiary(index)"
+          @dblclick="del(item.diaryID)"
         ></chooesDiary>
       </div>
       <div class="showDiary">
         <div class="contentBox">
-          <h3>{{ diaryList[index]?.date || '日期' }}</h3>
+          <h3>{{ notdelList[index]?.date || '日期' }}</h3>
           <img :src="image" draggable="false" />
-          <span>{{ diaryList[index]?.content || '' }}</span>
+          <span>{{ notdelList[index]?.content || '' }}</span>
         </div>
       </div>
     </div>
@@ -116,6 +133,7 @@ const switchDiary = (i) => {
       // justify-content: center;
       align-items: center;
       overflow: auto;
+      user-select: none;
       &::-webkit-scrollbar {
         display: none;
       }
@@ -165,5 +183,8 @@ const switchDiary = (i) => {
   to {
     opacity: 1;
   }
+}
+@media screen and (max-width: 1500px) {
+  @import '@/mobileCSS/diary';
 }
 </style>

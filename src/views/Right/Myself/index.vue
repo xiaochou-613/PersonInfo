@@ -77,7 +77,7 @@ const addFriend = (type) => {
 <template>
   <div class="homepage">
     <header>
-      <img src="@/image/蜡笔小新.png" alt="" />
+      <img src="@/image/雷神.png" alt="" />
     </header>
     <button class="btn">个人信息</button>
     <main>

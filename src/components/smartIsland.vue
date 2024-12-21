@@ -29,7 +29,9 @@ defineProps({
   /* background-color: black; */
   background-color: white;
   box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
-  color: black;
+  // color: black;
+  background-color: black;
+  color: white;
   position: absolute;
   top: 7%;
   left: 50%;

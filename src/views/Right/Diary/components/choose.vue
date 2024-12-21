@@ -42,6 +42,7 @@ const weatherImg = computed(() => {
 
 <style scoped>
 .code-box {
+  user-select: none;
   width: 400px;
   height: 80px;
   border-radius: 20px;
@@ -49,6 +50,9 @@ const weatherImg = computed(() => {
   padding: 10px;
   color: white;
   margin-top: 20px;
+  &:last-child {
+    margin-bottom: 20px;
+  }
 
   .code-title {
     font-size: 18px;
@@ -57,6 +61,7 @@ const weatherImg = computed(() => {
     margin-top: 5px;
     margin-left: 5px;
     float: left;
+    user-select: none;
   }
   .code-content {
     font-size: 14px;
@@ -67,10 +72,12 @@ const weatherImg = computed(() => {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    user-select: none;
   }
   img {
     width: 60px;
     height: 60px;
+    user-select: none;
   }
 }
 </style>

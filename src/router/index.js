@@ -14,20 +14,25 @@ const plan = () => import('@/views/Right/Plan/index.vue')
 const about = () => import('@/views/Right/About/index.vue')
 const diary = () => import('@/views/Right/Diary/index.vue')
 const diary_home = () => import('@/views/Right/Diary/diaryHome.vue')
+const login = () => import('@/views/Login/index.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/login',
+      component: login
+    },
+    {
       path: '/',
       component: Home,
       children: [
         {
-          path: '',
+          path: '/person',
           component: myself
         },
         {
-          path: '/search',
+          path: '/',
           component: Search
         },
         {
@@ -76,6 +81,17 @@ const router = createRouter({
       component: undefined404
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  // 获取token
+  const token = localStorage.getItem('Token') // 确保这里的键名与您存储 token 时使用的键名一致
+
+  if (!token && to.path !== '/login') {
+    next('/login')
+  } else {
+    next() // 确保一定要调用 next()，否则钩子就不会被resolved
+  }
 })
 
 export default router
