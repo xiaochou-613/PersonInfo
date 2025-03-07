@@ -29,3 +29,9 @@ export const deletePlan = (planId) => {
   const res = request.delete('api/deletePlan', { data: { planId } })
   return res
 }
+
+//更新提醒计划
+export const updateRemindPlan = (data) => {
+  const res = request.post('api/updateRemindTime', data)
+  return res
+}

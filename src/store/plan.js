@@ -5,12 +5,14 @@
 import { ElNotification } from 'element-plus'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
+import showToast from '@/components/index'
 import {
   getallPlan,
   addPlan,
   updatePlan,
   deletePlan,
-  updatePlanlevel
+  updatePlanlevel,
+  updateRemindPlan
 } from '@/apis/plan'
 
 export const usePlanStore = defineStore('Plan', () => {
@@ -121,16 +123,32 @@ export const usePlanStore = defineStore('Plan', () => {
     }
   }
 
+  //需要提醒的计划
+  const remindData = computed(() => {
+    return planData.value.filter((item) => item.alarmTime && !item.isDone)
+  })
+
+  //更新提醒计划
+  const updateRemind = async (data) => {
+    const res = await updateRemindPlan(data)
+    if (res.status === 200) {
+      get_Plan()
+      showToast('定时成功')
+    }
+  }
+
   return {
     readyData,
     doneData,
     finishData,
+    remindData,
 
     //方法
     get_Plan,
     add_Plan,
     update_Plan,
     delete_Plan,
-    stick_Plan
+    stick_Plan,
+    updateRemind
   }
 })

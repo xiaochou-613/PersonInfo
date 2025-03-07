@@ -13,14 +13,10 @@ const showAwait = () => {
   show.value = 'await'
 }
 
-//获取所有计划
-planStore.get_Plan()
-
 //双向绑定(更新计划)
 const updata_isDone = (planId, isDone) => {
   planStore.update_Plan({ planId, isDone })
 }
-//置顶计划(更新等级)
 
 // ----添加按钮部分
 //添加计划
@@ -49,12 +45,54 @@ const revert = () => {
   inp.value.style.display = 'none'
 }
 
-//  -----添加功能***************************************************************
-// 待办事项上面点击可以修改  -- 费
+// 控制对话框显示状态
+const dialogVisible = ref(false)
+const selectedPlanId = ref(null)
+const openDialog = (planId) => {
+  selectedPlanId.value = planId
+  dialogVisible.value = true
+}
 
-// 追求完美的话还可以将时间改为今天昨天
-// 考虑已完成的可以删除
-// ...
+// 提交时间
+//默认值为当前
+const date = ref(new Date().toISOString().slice(0, 10))
+const time = ref(new Date().toTimeString().slice(0, 5))
+const submittime = () => {
+  dialogVisible.value = false
+  const dateTimeString = `${date.value} ${time.value}:00`
+  planStore.updateRemind({
+    planId: selectedPlanId.value,
+    alarmTime: dateTimeString
+  })
+  //恢复当前时间
+  date.value = new Date().toISOString().slice(0, 10)
+  time.value = new Date().toTimeString().slice(0, 5)
+}
+
+// 格式化定时的时间
+const formatAlarmTime = (alarmTime) => {
+  if (!alarmTime) return ''
+  const now = new Date()
+  const alarmDate = new Date(alarmTime)
+  const diffTime = now - alarmDate
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24))
+
+  if (diffDays === 0) {
+    return `今天 ${alarmDate.getHours()}:${alarmDate.getMinutes()}`
+  } else if (diffDays === 1) {
+    return `昨天 ${alarmDate.getHours()}:${alarmDate.getMinutes()}`
+  } else if (diffDays === 2) {
+    return `前天 ${alarmDate.getHours()}:${alarmDate.getMinutes()}`
+  } else if (diffDays === -1) {
+    return `明天 ${alarmDate.getHours()}:${alarmDate.getMinutes()}`
+  } else if (diffDays === -2) {
+    return `后天 ${alarmDate.getHours()}:${alarmDate.getMinutes()}`
+  } else if (alarmDate.getFullYear() === now.getFullYear()) {
+    return `${alarmDate.getMonth() + 1}/${alarmDate.getDate()}`
+  } else {
+    return `${alarmDate.getFullYear()}`
+  }
+}
 </script>
 
 <template>
@@ -81,6 +119,7 @@ const revert = () => {
             }"
             >{{ item.content }}</span
           >
+          <span class="alarm-time">{{ formatAlarmTime(item.alarmTime) }}</span>
 
           <!-- 功能选择 -->
           <div class="icon">
@@ -102,6 +141,15 @@ const revert = () => {
               class="delicon"
               title="删除"
             ></v-icon>
+            <!-- 闹钟功能 -->
+            <v-icon
+              v-if="!item.isDone"
+              icon="mdi-alarm"
+              class="alarm"
+              title="定时提醒"
+              @click="openDialog(item.planId)"
+            >
+            </v-icon>
           </div>
         </li>
         <li>
@@ -141,10 +189,39 @@ const revert = () => {
         </ul>
       </div>
     </main>
+
+    <!-- 时间选择对话框 -->
+    <v-dialog
+      v-model="dialogVisible"
+      transition="dialog-top-transition"
+      width="auto"
+      persistent
+    >
+      <v-card>
+        <v-card-text>
+          <input type="date" v-model="date" />
+          <input type="time" v-model="time" />
+        </v-card-text>
+
+        <v-card-actions class="justify-end">
+          <v-btn text @click="dialogVisible = false">取消</v-btn>
+          <v-btn type="primary" @click="submittime()">确定</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.alarm-time {
+  margin-left: 10px !important;
+  // font-style: italic;
+  color: #888;
+  font-size: 10px;
+}
+.v-overlay {
+  z-index: 200 !important;
+}
 .finishtime {
   margin: 10px;
   color: #444;
@@ -213,6 +290,7 @@ main {
       overflow: hidden;
       text-overflow: ellipsis;
       cursor: default;
+      max-width: 173px;
     }
     span:hover {
       color: cornflowerblue;
@@ -228,8 +306,10 @@ main {
       margin-left: auto;
       margin-right: 20px;
       display: none;
+      position: relative;
       .delicon,
-      .top {
+      .top,
+      .alarm {
         color: #999;
         font-size: 22px;
         transition: 0.1s;
@@ -240,6 +320,9 @@ main {
       }
       .top:hover {
         color: rgb(191, 241, 73);
+      }
+      .alarm:hover {
+        color: rgb(214, 84, 186);
       }
     }
   }
@@ -283,5 +366,37 @@ main {
   color: #999;
   // font-size: 20px;
   margin-top: 239px;
+}
+
+/* 确保日期选择器显示在对话框上方 */
+.custom-datepicker-popper {
+  z-index: 2500 !important;
+}
+
+.datetime-picker {
+  display: flex;
+  gap: 10px;
+}
+
+.v-dialog > .v-overlay__content,
+.v-dialog > .v-overlay__content > form {
+  border-radius: 30px;
+}
+
+.v-dialog > .v-overlay__content > .v-card,
+.v-dialog > .v-overlay__content > form > .v-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(5px);
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0, 0.3);
+}
+body
+  > div.v-overlay-container
+  > div
+  > div.v-overlay__content
+  > div
+  > div.v-card-actions.justify-end
+  > button:nth-child(2) {
+  background-color: rgb(78, 173, 240);
+  border-radius: 12px;
 }
 </style>

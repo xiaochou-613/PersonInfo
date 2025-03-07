@@ -133,7 +133,9 @@ const del = (i) => {
       // justify-content: center;
       align-items: center;
       overflow: auto;
+      -webkit-user-select: none;
       user-select: none;
+      cursor: pointer;
       &::-webkit-scrollbar {
         display: none;
       }

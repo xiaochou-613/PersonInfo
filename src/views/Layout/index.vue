@@ -1,6 +1,8 @@
 <script setup>
 import left_list from '../Left/index.vue'
 import { ref, onMounted, watch, inject } from 'vue'
+import { usePlanStore } from '@/store/plan'
+import { ElNotification } from 'element-plus'
 import { useAudioStore } from '@/store/audio.js'
 import anhao from '@/music/暗号.mp3'
 import qilixiang from '@/music/七里香.mp3'
@@ -12,6 +14,7 @@ userStore.getUserInfo()
 
 //开场动画
 const content = ref(null)
+// 在组件挂载时启动定时器
 onMounted(() => {
   audioStore.audio = audioRef.value
 })
@@ -48,6 +51,58 @@ watch(
     else if (audioStore.audioPath === '七里香.mp3') music.value = qilixiang
   }
 )
+
+//提醒该提醒的消息
+const planStore = usePlanStore()
+planStore.get_Plan()
+watch(
+  () => planStore.remindData,
+  () => {
+    checkReminders()
+  }
+)
+
+// 记录已经提醒过的计划
+const remindedPlans = ref(new Set())
+
+// 定期检查提醒时间
+const checkReminders = () => {
+  const now = new Date()
+  planStore.remindData.forEach((plan, index) => {
+    const reminderTime = new Date(plan.alarmTime)
+    const timeDiff = reminderTime - now
+
+    if (timeDiff <= 0 && !remindedPlans.value.has(plan.planId)) {
+      // 如果设置的时间已经过去，直接提醒
+      setTimeout(() => {
+        ElNotification({
+          title: '提醒事项',
+          dangerouslyUseHTMLString: true,
+          message: ` <span style="color: red">[超时事项] </span
+  ><span style="font-weight: bold">${plan.content}</span>`,
+          duration: 0
+        })
+        remindedPlans.value.add(plan.planId)
+      }, index * 500) // 添加延迟，避免重叠
+    } else if (timeDiff > 0) {
+      // 否则设置一个定时器，等待直到提醒时间到达
+      setTimeout((plan) => {
+        const latestPlan = planStore.finishData.find(
+          (item) => item.planId === plan.planId
+        )
+        if (latestPlan) return
+        ElNotification({
+          title: '提醒事项',
+          dangerouslyUseHTMLString: true,
+          message: ` <span style="color: rgb(74, 169, 229)">[待办事项] </span
+  ><span style="font-weight: bold">${plan.content}</span>`,
+          duration: 0
+        })
+        remindedPlans.value.add(plan.planId)
+      }, timeDiff) // 添加延迟，避免重叠
+    }
+  })
+}
 </script>
 
 <template>

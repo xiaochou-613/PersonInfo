@@ -50,7 +50,7 @@ const upload = () => {
       class="drop-here"
       ref="uploadFile"
       @change="upload"
-      accept=".jpg"
+      accept=".jpg,.jpeg,.png"
     />
     <div class="text text-drop">+</div>
     <div class="text text-upload">...</div>
